@@ -1,7 +1,27 @@
 % PACKAGE IMPORTS
 \usepackage{geometry}
-\geometry{letterpaper}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{titling}
+\usepackage{listings}
+\usepackage{enumitem}
+
+\usepackage{tgschola}
+
+% DOCUMENT COMMANDS
+\newcommand{\thickline}{\noindent\rule{\textwidth}{2pt}}
+\newcommand{\preparetitle}{\title{CMPM 163 Notes}\author{Malcolm Riley}\date{Winter 2019\quad\textemdash\quad\today}}
+\newenvironment{topic}[1]{\section*{#1}\begin{itemize}}{\end{itemize}}
+\newcommand{\inputcode}[2]{\lstinputlisting[title=\textbf{#1},label=#2]{#2}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\term}[1]{\textbf{#1}}
 
 % DOCUMENT CONFIGURATION
+\geometry{letterpaper, margin=1in}
+\pretitle{\thickline\begin{center}\LARGE\bfseries}
+\posttitle{\end{center}}
+\predate{\begin{center}}
+\postdate{\end{center}\thickline\\[1em]}
+\setlist[itemize,1]{label=\textbf{--}}
+\lstset{basicstyle=\small\ttfamily,float=h,tabsize=4,frame=single,firstnumber=1,numbers=left,stepnumber=1,aboveskip=1em,belowskip=1em}
