@@ -1,0 +1,30 @@
+\documentclass[11pt]{article}
+\input{../_PREAMBLE}
+\preparetitle
+
+\begin{document}
+\maketitle
+
+\begin{topic}{Vertex Displacement in Shaders}
+	\item There are two types of variables: \term{uniform} variables, which are the same for every vertex, and \term{} variables, which are potentially unique per vertex.
+	\item The \code{Properties} block can be used in Unity's ShaderLab syntax to define \term{uniform} variables.
+	\item For clarity, it can be a good idea to denote variable fields in the actual code using the keyword \code{uniform}.
+	\item In Unity, the \code{\_Time} uniform is defined for you; it is a float array of various multiples of the current time.
+	\item A \term{normal} is a unit vector perpendicular to the face of a corresponding polygon.
+	\item The main takeaway is that the \term{Vertex Shader} is the program that operates per vertex.
+\end{topic}
+
+\begin{topic}{Phong Lighting Algorithm}
+	\item The most common shader - invented by a computer scientist from the University of Utah way back in 1975.
+	\item There are different varieties of lighting model; the unique aspect of the Phong lighting model is that it operates per-pixel (per fragment) and that it incorporates specular highlights.
+	\item ``Matte'' objects do not have specular highlights, but reflective objects do. Both types feature \term{Diffuse} and \term{Ambient} lighting.
+	\item \term{Diffuse} lighting is, basically, surface lighting; \term{Ambient} light is a uniform light factor applied to the entire object.
+	\item In Unity, point lights are only calculated during the ``Forward Add'' lighting pass.
+	\item For multiple lights, changing the blending mode allows Unity to perform multiple passes.
+	\item Unity provides the light color via the uniform \code{\_LightColor0}. This vector is available in both the vertex and fragment shader.
+	\item For the calculation of lighting, it is necessary to obtain the vertex position in world coordinates (since the vertex and lights both exist in world space, instead of local space).
+	\item Unity exposes the \code{unity\_ObjectToWorld} matrix for transforming local coordinates to world coordinates.
+	\item Unity also exposes the worldspace camera coordinates as the uniform \code{\_WorldSpaceCameraPos}.
+\end{topic}
+
+\end{document}

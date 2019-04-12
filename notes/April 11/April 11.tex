@@ -1,0 +1,27 @@
+\documentclass[11pt]{article}
+\input{../_PREAMBLE}
+\preparetitle
+
+\begin{document}
+\maketitle
+
+\begin{topic}{Detecting Input in Unity}
+	\item All script-based input detection in Unity is handled via the \code{Input} class in the \code{UnityEngine} namespace.
+	\item To query mouse position, use \code{Input.mouseposition.x} and \code{Input.mouseposition.y}
+	\item To query for a particular keypress, use \code{Input.GetKey("name")} where \code{name} is the name of the key to query for.
+\end{topic}
+
+\begin{topic}{Textures and Shaders}
+	\item Texture coordinates, the \term{UV} of the texture, are a pair of floating point values $u$ and $v$ in the range $[0, 1]$
+	\item Unity automatically generates UV coordinates for basic game objects, as will most 3D modeling programs.
+	\item The mapping between the UV coordinates of a particular polygon in a mesh and the corresponding UV coordinates of the input texture file determines how that particular polygon will be textured in the shader.
+	\item Conceptually, all fragments in the fragment shader are processed simultaneously (and thus, independently of the others)
+\end{topic}
+
+\begin{topic}{Edge Detection in Shaders}
+	\item See: Sobel Operator and Edge Detection on Wikipedia
+	\item The fundamental idea is to examine the image for discontinuity between color of the current pixel and its neighbors. If there is a high discontinuity, color as the edge color.
+	\item There are different types of edge detection, including comparison of normals, etc.
+\end{topic}
+
+\end{document}

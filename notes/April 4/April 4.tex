@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\input{../_PREAMBLE}
+\preparetitle
+
+\begin{document}
+\maketitle
+
+\begin{topic}{Class Information}
+	\item Class Website: 
+	\item Class Slack Channel:
+	\item Slack channel is primary avenue of communication for the class.
+\end{topic}
+
+\begin{topic}{3D Scene Overview}
+	\item In most graphics frameworks, scenes consist of the following components:
+	\item The \term{Camera} is the object that characterizes the extent of the 3D space that will be projected onto the 2D image plane (of the screen). It defines ``how much of the 3D scene is viewed''
+	\item The \term{Lights} are the components used for simulating illumination. They typically incorporate a position, orientation, color and will typically have different types.
+	\item \term{Geometry} refers to the objects, composed of triangles, that populate the scene and are lit by the different \term{lights}
+	\item \term{Materials} are the characterizing properties of the objects in the scene that determine how individual pieces of \term{geometry} respond to \term{light}.
+	\item \term{Textures}
+\end{topic}
+
+\begin{topic}{Perspective Camera}
+	\item Cameras are defined by a number of variables, typically a matrix.
+	\item Only objects within the \term{View Frustum} of the camera are rendered.
+\end{topic}
+
+\begin{topic}{Rendering Overview}
+	\item The \term{Rendering Pipeline} describes the series of operations that transform programmatically defined 3D data into a 2D image for display on a screen.
+	\item Historically, the rendering pipeline was \term{fixed-function}, meaning that developers didn't have much control over how the hardware operated. Modern rendering pipelines are \term{programmable} via programs known as \term{shaders}.
+	\item The \term{Vertex Shader} is the responsible for turning 3D geometry into ``normalized device coordinates'', 2D values between $-1$ and $+1$, plus a depth value.
+	\item The \term{Fragment} or \term{Pixel Shader} is responsible for coloring in individual pixels (more accurately, ``fragments'', and then drawing them to the screen.
+	\item (Pipeline Overview Here)
+	\item In Unity, each shader program occupies a single function. At the start of an application, these files are compiled into a ``program'' and dispatched to the GPU along with texture data for use. When the application is running (usually 60FPS), during each frame, the following occur:
+	\begin{enumerate}
+		\item The shader program is \term{bound} (activated) on the GPU
+		\item Texture data that will be used for the program will also be \term{bound}.
+		\item 3D points describing the geometry are dispatched to the GPU and input to the vertex shader, one triangle at a time.
+		\item The vertex shader projects the triangles into a simpler coordinate system and outputs it as \term{fragments} (basically, pixel data), which is then fed to the \term{fragment shader}.
+		\item The fragment shader decides what color to make each pixel, and then draws it on the screen.
+	\end{enumerate}
+	\item The GPU capitalizes on massive parallelization. For instance, when the fragment shader is called, it operates agnostic of any other fragment being drawn.
+\end{topic}
+
+\begin{topic}{Rendering in Unity}
+	\item The most basic type of vertex shader in Unity is called a \term{Passthrough Shader}. This vertex shader merely projects the 3D geometry onto the 2D plane, and then passes the 2D data to the fragment shader.
+	\item The most basic fragment shader is a color shader, which simply colors the fragment a solid color irrespective of input data.
+	\item Shaders are applied to geometry via the materials system. Objects may have a Material attached, and an individual Material may have one \code{.shader} file attached to it.
+	\item (Shader Examples Here)
+	\item \code{UnityObjectToClipPos()} - Project 3D to 2D
+	\item \code{tex2D()} - UV color lookup for 2D texture
+\end{topic}
+
+\end{document}

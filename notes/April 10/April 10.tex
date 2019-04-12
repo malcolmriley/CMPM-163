@@ -1,0 +1,22 @@
+\documentclass[11pt]{article}
+\input{../_PREAMBLE}
+\preparetitle
+
+\begin{document}
+\maketitle
+
+\begin{topic}{Shader Fundamentals}
+	\item The \term{Vertex Shader} is the program that alters the vertices of a mesh in some way.
+	\item Vertices -> Primitive Assembly -> Vertex Shader -> Rasterization -> 
+	\item \term{Rasterization} is the process of turning connected vertices into fragments by determining which pixel regions of the render target are ``covered'' by the triangles.
+	\item \term{Rasterization} is a fixed function of the GPU and currently cannot be programmed.
+	\item The \code{\#pragma} directive informs the compiler about a particular shader.
+\end{topic}
+
+\begin{topic}{Shaders in Unity}
+	\item \term{ShaderLab} is basically a Unity wrapper for Cg, GLSL and HLSL shader programs.
+	\item In Unity, Shaders are applied to Materials, and Materials are applied to Objects; there is typically a 1:1:1 correspondence between these.
+	\item \term{ShaderLab} syntax is basically a list of attributes and flags, with fields for shader code.
+\end{topic}
+
+\end{document}
