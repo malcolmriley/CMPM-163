@@ -5,8 +5,28 @@
 \begin{document}
 \maketitle
 
-\begin{topic}{TITLE}
-	\item 
+\begin{topic}{Intro to Textures and Lighting}
+	\item On the GPU, vertex positions are converted to texture coordinates in \term{UV Space}.
+	\item \term{UV Space} is a coordinate system of floating-point values ranging between $0$ and $1$.
+	\item The basic lighting model is \code{surfaceColor = emissive + ambient + diffuse + specular}. In short, just add all the values together.
+	\begin{itemize}
+		\item \term{Ambient Light} is the natural light inside a scene. This can be thought of as the ``sun'' - a strong, distant light source.
+		\item \term{Diffuse Light} is the light that is reflected by the object in all directions. This typically only relies on the surface normal and light vector. Typically this is calculated by the expression $D = K_d \times C \times \code{max}(N \cdot L, 0)$, where $N$ is the surface normal, $L$ is the light vector, $C$ is the incoming light color, and $K_d$ is the diffuse color.
+		\item \term{Emissive Light} is the light that the object itself.
+		\item \term{Specular Light} is the light reflected by the ``shiny bits'' of the object. This is typically calculated by the expression $S = K_s \times C \times f \times \code{max}(N \cdot H, 0)^{s}$ where $K_s$ is the specular color, $C$ is the incoming light color, $f$ is $1$ or $0$ depending on whether the polygon is facing the camera, $N$ is the surface normal, and $H$ is the normalized vector halfway between the normalized viewpoint vector and $L$.
+	\end{itemize}
+	\item \term{Flat Shading} is a shading method such that the shading is not interpolated in the raster process, but is constant per polygon normal.
+	\item \term{Gouraud Shading} is a method of shading in which the lighting calculation is performed in the vertex shader rather than in the fragment shader.
+\end{topic}
+
+\begin{topic}{A Closer Look at Lighting}
+	\item Table of Component Expressions: \\
+	\begin{tabular}{llp{3in}}
+		\textbf{Component} & \textbf{Expression} & \textbf{Legend} \\ \hline
+		Ambient & $K_a \times C$ & $K_a$ = Material Ambient Reflectance; $C$ = Incoming Light Color \\
+		Diffuse & $K_d \times C \times \code{max}(N \cdot L, 0)$ & $K_d$ = Material diffuse color; $C$ = Incoming diffuse light color; $N$ = Normalized surface normal; $L$ = Normalized vector facing light source \\
+		Specular & $$ & \\
+	\end{tabular}
 \end{topic}
 
 \end{document}
