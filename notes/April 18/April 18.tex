@@ -5,8 +5,15 @@
 \begin{document}
 \maketitle
 
-\begin{topic}{TITLE}
-	\item 
+\begin{topic}{Screen-Space Effects}
+	\item \term{Screen-Space Effects} are textures captured or intercepted from the main render camera before being altered and re-rendered to the original target. \term{Post-Processing} is a type of \term{Screen-Space Effect}.
+	\item In Unity, \code{MonoBehavior} features the \code{OnRenderImage} method, which can be overridden to perform these types of effects.
+	\item When performing \term{Screen-Space Effects}, it is typically not permitted to alter the vertices within the vertex shader. Unity provides a default passthrough vertex shader which can be invoked using the compiler statement \code{\#pragma vertex vert\_img}.
+	\item The human eye is more sensitive to changes in certain spectra, so it is occasionally beneficial to weight the luminosity of color values accordingly
+	\item The \code{[ExecuteInEditMode]} class attribute allows \term{Screen-Space Effects} to be executed even if Play Mode is not active.
+	\item In most shader languages, a \code{float} is a full 32-bit floating point value, whereas \code{fixed} is a 8 bit fixed-point value.
+	\item Sometimes making a special effect isn't more complex, it just has more ``stuff''
+	\item \term{Screen-Space Effects} are an easy way to give a distinctive look to an entire scene
 \end{topic}
 
 \end{document}
