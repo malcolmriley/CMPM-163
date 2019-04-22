@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\input{../_PREAMBLE}
+\preparetitle
+
+\begin{document}
+\maketitle
+
+\begin{topic}{Shader Concepts}
+	\item A \term{Texel} is conceptually equivalent to a pixel, but refers to the use case of sampling from a texture.
+	\item When sampling from a texture, it's possible to query the neighboring pixels
+	\item In Unity, if there exists a texture called \code{\_MainTex}, there will exist a special \code{uniform float4} called \code{\_MainTex\_TexelSize} with the following members: \code{x} and \code{y} are the width and height of the texture in pixels, respectively
+\end{topic}
+
+\begin{topic}{Rendering to Other Targets}
+	\item A powerful technique in shader programming is to render to an intermediate state (other than the screen), typically referred to as a \term{Offscreen Buffer}, \term{FBO}, or \term{Frame Buffer Object}. In Unity, this construct is called a \term{RenderTexture}.
+	\item Instead of rendering directly to the screen, the shader renders to a special memory construct - the aforementioned buffer.
+	\item This buffer object exists in the GPU's memory.
+	\item This technique can be used for any number of fancy effects, such as a ``security-camera'' effect, a ``game-of-life'' effect, or an exotic ``reaction-diffusion'' effect.
+\end{topic}
+
+\begin{topic}{Ping-Pong Render Technique}
+	\item Also referred to as \term{Double-Buffered Rendering}
+	\item In this technique, the output of one pass in a frame will be used as the input of another pass in the same frame, or the output of one frame will be used as the input of another frame
+	\item Since texture data on the GPU is read-only, it will be necessary to swap inputs between two buffer objects; hence the name of ``Ping-Pong''
+	\item This method can be used to perform iterative computation on the GPU.
+	\item Every sophisticated iterative technique in which it is necessary to know the output of the previous timestep will use this or a similar technique (smoke, water, clouds, fire, etc.)
+	\item It is not uncommon to have multiple shaders performing different operations between each ``Ping-Pong'': Either chained per-frame, or alternating their execution
+\end{topic}
+
+\begin{topic}{Game of Life}
+	\item The universe is an infinite two-dimensional orthogonal grid of square cells, each of which has two possible states: alive, and dead
+	\item Each cell interacts with its eight neighbors, which are the cells that are horizontally, vertically and diagonally adjacent
+	\item The behavior of these cells is governed by simple rules
+\end{topic}
+
+\begin{topic}{Unity Texture Manipulation}
+	\item Unity provides a number of texture-manipulation methods\\
+	\begin{tabular}{lccp{2in}}
+		\textbf{Method} & \textbf{Type} & \textbf{Relative Speed} & \textbf{Explanation} \\ \hline
+		\code{SetPixels}, \code{GetPixels} & CPU & Fast & Inserts or extracts data from the texture. The texture must be available on the CPU. \\
+		\code{CopyTexture} & GPU & Fast & Moves data from one texture to another \\
+		\code{Apply} & CPU to GPU & Slow & Copy data from the CPU to the GPU \\
+		\code{ReadPixels} & GPU to CPU & Slow & Copeis texture data from GPU to the CPU \\
+		\code{Blit} & GPU & Fast & Triggers rendering into an offscreen buffer (the \code{RenderTexture}) \\
+	\end{tabular}
+\end{topic}
+
+\begin{topic}{Texture Formats}
+	\item There are quite a few
+	\item This class will concern itself primarily with \code{RGBA32}. Each \term{channel} (Red, Green, Blue, Alpha) is an 8 bit floating-point value
+	\item See docs.unity3d.com/ScriptReference/TextureFormat.html for an itemized list of what Unity supports
+	\item For certain computations, one may need more precision, and for that one can use \code{RGBAFloat} which offers full floating-point precision per channel
+\end{topic}
+
+\end{document}
