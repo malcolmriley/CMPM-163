@@ -62,12 +62,12 @@ public class LookManager : MonoBehaviour {
 					SetLookTarget(target.cameraMoveTarget);
 				}
 				else if (!target.cameraMoveTarget.name.Equals(_currentTarget)){
+					// If mouseover and not looking
 					uiComponent.sprite = interactSprite;
 					FadeTo(fadeSpeed);
-					// Mouseover
-					// print("mouseover " + hit.collider.gameObject.name);
 				}
 				else if (!target.cameraMoveTarget.name.Equals(defaultTransform.name)){
+					// If mouseover and looking
 					uiComponent.sprite = exitSprite;
 					FadeTo(fadeSpeed);
 				}
