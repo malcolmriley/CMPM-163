@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ac68a5abe4b4827af2ccb961fd0229, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
+  anchor: 0
   textAsset: {fileID: 4900000, guid: ebb155c2ec29442f0ae00b5e23525244, type: 3}
   screenWidth: 400
   screenHeight: 320
+  loadSpeed: 0.107

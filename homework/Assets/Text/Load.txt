@@ -1,0 +1,19 @@
+INITIALIZING PARAGON OS v2.5 
+(c) 1992 Paragon Esoteric Software
+
+   Detecting Hardware Components...
+   - Serial: B105270-AB14 [PASS]
+   - Local CPU: 200MHz [NOTEST]
+   - Memory: 65536K [PASS]
+   - Aux 1: AVAIL. [CONN. PASS]
+   - Aux 2: [ERR23]
+   - HDD Master: OK
+
+   Loading System Modules...
+   - PRGN.SYS [COMPLETE]
+   - RNDRMTC.DRV: [COMPLETE]
+   - 3DACCEL.DRV: [ERR15]
+
+   Discovering Peripherals...
+   - <DEVICE UNKNOWN>
+   - Rendermatic Hologram Projector
