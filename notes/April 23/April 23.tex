@@ -5,8 +5,25 @@
 \begin{document}
 \maketitle
 
-\begin{topic}{TITLE}
-	\item 
+\begin{topic}{Miscellaneous}
+	\item Quiz next week: Tuesday, April 30th - mix of theoretical and code questions (Terminology and GLSL commands)
+	\item Careful when using Unity's default lighting system, it may be doing multiple lighting passes without telling you - to resolve this issue, activate blending in your shader; alternately, pass point light positions directly and use these positions to calculate lighting
+\end{topic}
+
+\begin{topic}{Using Images for Vertex Displacement}
+	\item A common use-case is the generation of \term{Height Maps}. By detecting vertex height in a shader, it's trivially simple to map different textures to a mesh depending on y-displacement.
+	\item One technique is to pass a height texture to the shader.
+	\item Unity provides facility to directly edit meshes in script.
+	\item Unity offers the \code{RecalculateNormals()} method on \code{Mesh} objects to automatically set normals on that mesh.
+	\item In certain circumstances, the \code{tex2D()} lookup is not available in the vertex shader. However, \code{tex2Dlod()} may be available. This is because \code{tex2D()} attempts to automatically set the mip level, which isn't necessarily available before rasterization.
+\end{topic}
+
+\begin{topic}{Noise and Procedural Generation in Shaders}
+	\item There are different types of noise, which are different in terms of aggregate structure (such as periodicity)
+	\item In certain types of noise, individual pixels may have some relationship to their neighboring pixels.
+	\item \term{Perlin Noise} was originally developed by Ken Perlin as he was working on the original Tron movie. His task was to create a new kind of naturalistic visual effect computationally.
+	\item The general idea behind \term{Perlin Noise} is to create \quotes{bins} for which numbers are generated randomly; these \quotes{bins} are then subdivided, and the values are interpolated between.
+	\item In noise generation, the term \term{Octave} refers to the practice of combining multiple noise waveforms to create a more sophisticated waveform. 
 \end{topic}
 
 \end{document}
