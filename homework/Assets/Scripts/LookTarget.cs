@@ -7,5 +7,4 @@ using UnityEngine.Experimental.UIElements;
 public class LookTarget : MonoBehaviour {
 	// Public Fields
 	public Transform cameraMoveTarget;
-	public Sprite interactionSprite;
 }

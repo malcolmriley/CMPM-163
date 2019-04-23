@@ -8,11 +8,15 @@ public class LookManager : MonoBehaviour {
 	// Public References
 	public GameObject cameraDolly;
 	public Transform defaultTransform;
+	public SpriteRenderer uiComponent;
+	public Sprite interactSprite;
+	public Sprite exitSprite;
 
 	// Public Fields
 	public float maxVerticalLook;
 	public float maxHorizontalLook;
 	public float lookSpeed;
+	public float fadeSpeed;
 
 	// Internal References
 	private Camera _camera;
@@ -20,9 +24,11 @@ public class LookManager : MonoBehaviour {
 	private Quaternion _lastRotation;
 
 	// Internal Fields
+	private string _currentTarget;
 	private Transform _lookTarget;
 	private bool _isInteracting;
 	private float _lookProgress;
+	private float _fadeProgress;
 
 	public void Start() {
 		_camera = GetComponent<Camera>();
@@ -46,22 +52,32 @@ public class LookManager : MonoBehaviour {
 	}
 
 	private void HandleInteract(Vector3 mousePosition) {
-		// Handle Mouseover and Click
+		// Mouseover and Click
 		Ray ray = _camera.ScreenPointToRay(mousePosition);
 		if (Physics.Raycast(ray, out RaycastHit hit, 20.0F)) {
 			LookTarget target = hit.collider.gameObject.GetComponent<LookTarget>();
 			if (!(target is null)) {
 				if (Input.GetMouseButtonDown(0) && !_isInteracting) {
+					// When Clicked, set move target
 					SetLookTarget(target.cameraMoveTarget);
 				}
-				else {
+				else if (!target.cameraMoveTarget.name.Equals(_currentTarget)){
+					uiComponent.sprite = interactSprite;
+					FadeTo(fadeSpeed);
 					// Mouseover
 					// print("mouseover " + hit.collider.gameObject.name);
 				}
+				else if (!target.cameraMoveTarget.name.Equals(defaultTransform.name)){
+					uiComponent.sprite = exitSprite;
+					FadeTo(fadeSpeed);
+				}
 			}
 		}
+		else {
+			FadeTo(-fadeSpeed);
+		}
 
-		// Handle Camera Pan
+		// Camera Pan
 		if (_isInteracting) {
 			if (_lookProgress >= 1.0F) {
 				UpdateLastTransform();
@@ -73,7 +89,7 @@ public class LookManager : MonoBehaviour {
 				cameraDolly.transform.rotation = Quaternion.Slerp(_lastRotation, _lookTarget.rotation, _lookProgress);
 			}
 		}
-		else if (Input.GetKeyDown(KeyCode.Space)) {
+		else if (Input.GetMouseButtonDown(1)) {
 			SetLookTarget(defaultTransform);
 		}
 	}
@@ -82,10 +98,19 @@ public class LookManager : MonoBehaviour {
 		_isInteracting = true;
 		_lookProgress = 0.0F;
 		_lookTarget = passedTransform;
+		_currentTarget = passedTransform.name;
 	}
 
 	private void UpdateLastTransform() {
 		_lastPosition = cameraDolly.transform.position;
 		_lastRotation = cameraDolly.transform.rotation;
+	}
+
+	private void FadeTo(float delta) {
+		_fadeProgress += delta;
+		_fadeProgress = Mathf.Clamp01(_fadeProgress);
+		Color color = uiComponent.color;
+		color.a = Mathf.SmoothStep(0.0F, 1.0F, _fadeProgress);
+		uiComponent.color = color;
 	}
 }

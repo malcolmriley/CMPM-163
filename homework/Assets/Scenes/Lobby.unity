@@ -9765,9 +9765,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraDolly: {fileID: 388650145}
   defaultTransform: {fileID: 1174510096}
+  uiComponent: {fileID: 1988859872}
+  interactSprite: {fileID: 21300000, guid: 846619c60f3444c319444e06115b3a00, type: 3}
+  exitSprite: {fileID: 21300000, guid: 6c12fd9465095473b9d39013f5c2e175, type: 3}
   maxVerticalLook: 5
   maxHorizontalLook: 5
   lookSpeed: 0.06
+  fadeSpeed: 0.1
 --- !u!1001 &543631422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10339,7 +10343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMoveTarget: {fileID: 123034757}
-  interactionSprite: {fileID: 21300000, guid: 846619c60f3444c319444e06115b3a00, type: 3}
 --- !u!65 &1019290122
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10732,7 +10735,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMoveTarget: {fileID: 72523210}
-  interactionSprite: {fileID: 21300000, guid: 846619c60f3444c319444e06115b3a00, type: 3}
 --- !u!65 &1505323698
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10814,7 +10816,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ff52847c9ba674b5d8470bae2eceaaf9, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10822,7 +10824,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2004171718
