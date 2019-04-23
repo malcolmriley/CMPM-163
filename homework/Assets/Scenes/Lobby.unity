@@ -10760,6 +10760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2dc6ce746f174b90be941aea5c05555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textElement: {fileID: 62158908}
+  screen: {fileID: 11400000, guid: 6077acffd7d894d53932df6a58d39e16, type: 2}
 --- !u!1 &1988859870
 GameObject:
   m_ObjectHideFlags: 0
