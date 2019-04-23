@@ -107,8 +107,7 @@ public class LookManager : MonoBehaviour {
 	}
 
 	private void FadeTo(float delta) {
-		_fadeProgress += delta;
-		_fadeProgress = Mathf.Clamp01(_fadeProgress);
+		_fadeProgress = Mathf.Clamp01(_fadeProgress + delta);
 		Color color = uiComponent.color;
 		color.a = Mathf.SmoothStep(0.0F, 1.0F, _fadeProgress);
 		uiComponent.color = color;
