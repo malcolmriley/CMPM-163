@@ -37,7 +37,7 @@ public class TerminalScreen : ScriptableObject {
 		if (loadSpeed < 1.0F) {
 			_builder = new StringBuilder();
 			_lines = textAsset.text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-			_builder.Append(_lines[0]);
+			_builder.AppendLine(_lines[0]);
 		}
 		else {
 			manager.SetScreenText(textAsset.text);
