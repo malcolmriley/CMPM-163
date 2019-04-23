@@ -367,9 +367,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f5491ad8d1f431f867f3a1459a4dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraDolly: {fileID: 0}
+  cameraDolly: {fileID: 388650145}
+  defaultTransform: {fileID: 1174510096}
   maxVerticalLook: 5
   maxHorizontalLook: 5
+  lookSpeed: 0.1
 --- !u!1001 &543631422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -838,7 +840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393213f8e106b4fbea60186e451267f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraMoveTarget: {fileID: 0}
+  cameraMoveTarget: {fileID: 123034757}
   interactionSprite: {fileID: 0}
 --- !u!65 &1019290122
 BoxCollider:
@@ -975,15 +977,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb5565446acb649c6aea52229a93cc47, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.14
+      value: 4.02
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb5565446acb649c6aea52229a93cc47, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.8
+      value: 6.69
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb5565446acb649c6aea52229a93cc47, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.36
+      value: -6.26
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb5565446acb649c6aea52229a93cc47, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1019,15 +1021,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb5565446acb649c6aea52229a93cc47, type: 3}
       propertyPath: m_LocalScale.x
-      value: 90
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb5565446acb649c6aea52229a93cc47, type: 3}
       propertyPath: m_LocalScale.y
-      value: 90
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb5565446acb649c6aea52229a93cc47, type: 3}
       propertyPath: m_LocalScale.z
-      value: 90
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: bb5565446acb649c6aea52229a93cc47, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1201,7 +1203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393213f8e106b4fbea60186e451267f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraMoveTarget: {fileID: 0}
+  cameraMoveTarget: {fileID: 72523210}
   interactionSprite: {fileID: 0}
 --- !u!65 &1505323698
 BoxCollider:
