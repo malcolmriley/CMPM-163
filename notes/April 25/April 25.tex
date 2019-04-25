@@ -5,8 +5,12 @@
 \begin{document}
 \maketitle
 
-\begin{topic}{TITLE}
-	\item 
+\begin{topic}{Shader Case Studies}
+	\item It is possible to reconstruct the world coordinates of a particular fragment in Unity by querying the depth buffer.
+	\item To create a gradient from within a shader, simply use the \code{lerp()} function between two \code{float4}.
+	\item A common technique is to encode operational data into a texture, sampling that texture within the shader using \code{tex2D()}. For instance, querying the \code{r} and \code{g} values for use as an offset for fragments.
+	\item When using a lookup texture for screen-space effects, there is the risk that screens with different aspect ratio will cause stretching. Correcting for this may involve platform-specific scripting code.
+	\item Check out \quotes{Makin' stuff look good: Stealth games' XRay Vision} and \quotes{Beyond Turing - Ray Tracing and the Future of Computer Graphics}
 \end{topic}
 
 \end{document}
