@@ -3,7 +3,6 @@ using GameTerminal;
 using System.Text;
 using System;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "TerminalText", menuName = "DataContainers/TerminalText")]
 public class TerminalText : ScriptableObject, ITerminalBehavior {
@@ -76,29 +75,4 @@ public class TerminalText : ScriptableObject, ITerminalBehavior {
 	public virtual void OnInteract(TerminalManager manager, TerminalInput interaction) {
 
 	}
-}
-
-namespace GameTerminal {
-	public enum TerminalInput {
-		UP,
-		DOWN,
-		LEFT,
-		RIGHT,
-		BACK,
-		SELECT,
-		ANY,
-	}
-
-	public interface ITerminalBehavior {
-		void OnScreenLoad(TerminalManager manager);
-		void OnScreenExit(TerminalManager manager);
-		void OnScreenUpdate(TerminalManager manager);
-		void OnInteract(TerminalManager manager, TerminalInput interaction);
-	}
-
-	[Serializable]
-	public class TerminalInteraction : UnityEvent<TerminalManager, TerminalInput> { }
-
-	[Serializable]
-	public class TerminalEvent : UnityEvent<TerminalManager> { }
 }
