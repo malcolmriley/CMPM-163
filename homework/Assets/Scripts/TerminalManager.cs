@@ -1,8 +1,33 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using GameTerminal;
+using UnityEngine.Events;
+
+namespace GameTerminal {
+	public enum TerminalInput {
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT,
+		BACK,
+		SELECT,
+		ANY,
+	}
+
+	public interface ITerminalBehavior {
+		void OnScreenLoad(TerminalManager manager);
+		void OnScreenExit(TerminalManager manager);
+		void OnScreenUpdate(TerminalManager manager);
+		void OnInteract(TerminalManager manager, TerminalInput interaction);
+	}
+
+	[Serializable]
+	public class TerminalInteraction : UnityEvent<TerminalManager, TerminalInput> { }
+
+	[Serializable]
+	public class TerminalEvent : UnityEvent<TerminalManager> { }
+}
 
 public class TerminalManager : MonoBehaviour {
 
@@ -15,7 +40,7 @@ public class TerminalManager : MonoBehaviour {
 	public TerminalEvent onExit;
 
 	// Internal Fields
-	private Dictionary<KeyCode, TerminalInput> _inputMap = new Dictionary<KeyCode, TerminalInput>() {
+	private Dictionary<KeyCode, TerminalInput> _inputMap = new Dictionary<KeyCode, TerminalInput> {
 		[KeyCode.Return] = TerminalInput.SELECT,
 		[KeyCode.W] = TerminalInput.UP,
 		[KeyCode.S] = TerminalInput.DOWN,
