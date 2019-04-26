@@ -56,12 +56,12 @@ public class TerminalManager : MonoBehaviour {
 		[KeyCode.D] = TerminalInput.RIGHT,
 		[KeyCode.Space] = TerminalInput.BACK
 	};
+	private bool _booted;
 	private GameObject _currentScreen;
 	private GameObject _previousScreen;
 
 	void Start() {
 		onStart?.Invoke(this);
-		Boot();
 	}
 
 	void Update() {
@@ -71,10 +71,12 @@ public class TerminalManager : MonoBehaviour {
 	}
 
 	public void Boot() {
-		onBoot?.Invoke(this);
-		if (!(bootScreen is null)) {
-			_currentScreen = Instantiate(bootScreen, canvas.transform);
-			_currentScreen.GetComponent<TerminalBehavior>()?.OnScreenLoad(this);
+		if (!_booted) {
+			onBoot?.Invoke(this);
+			if (!(bootScreen is null)) {
+				_currentScreen = Instantiate(bootScreen, canvas.transform);
+				_currentScreen.GetComponent<TerminalBehavior>()?.OnScreenLoad(this);
+			}
 		}
 	}
 

@@ -60,6 +60,7 @@ public class LookManager : MonoBehaviour {
 				if (Input.GetMouseButtonDown(0) && !_isInteracting) {
 					// When Clicked, set move target
 					SetLookTarget(target.cameraMoveTarget);
+					target.onLookAt?.Invoke();
 				}
 				else if (!target.cameraMoveTarget.name.Equals(_currentTarget)){
 					// If mouseover and not looking
