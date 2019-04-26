@@ -7,71 +7,54 @@ using GameTerminal;
 public class TerminalManager : MonoBehaviour {
 
 	// Public Fields
-	public Text textElement;
-	public TerminalScreen loadScreen;
+	public Canvas canvas;
+	public TerminalInteraction interaction;
+	public TerminalEvent onStart;
+	public TerminalEvent onLoad;
+	public TerminalEvent onUpdate;
+	public TerminalEvent onExit;
 
 	// Internal Fields
-	private TerminalScreen _screen;
-	private TerminalScreen _previous;
-	private Dictionary<KeyCode, TerminalInteraction> _inputMap = new Dictionary<KeyCode, TerminalInteraction>();
+	private Dictionary<KeyCode, TerminalInput> _inputMap = new Dictionary<KeyCode, TerminalInput>() {
+		[KeyCode.Return] = TerminalInput.SELECT,
+		[KeyCode.W] = TerminalInput.UP,
+		[KeyCode.S] = TerminalInput.DOWN,
+		[KeyCode.A] = TerminalInput.LEFT,
+		[KeyCode.D] = TerminalInput.RIGHT,
+		[KeyCode.Space] = TerminalInput.BACK
+	};
 
 	void Start() {
-		_inputMap[KeyCode.Return] = TerminalInteraction.SELECT;
-		_inputMap[KeyCode.W] = TerminalInteraction.UP;
-		_inputMap[KeyCode.S] = TerminalInteraction.DOWN;
-		_inputMap[KeyCode.A] = TerminalInteraction.LEFT;
-		_inputMap[KeyCode.D] = TerminalInteraction.RIGHT;
-		_inputMap[KeyCode.Space] = TerminalInteraction.BACK;
-		Boot();
+		onStart?.Invoke(this);
 	}
 
 	void Update() {
-		_screen?.OnScreenUpdate(this);
-		HandleInteractions(_screen);
+		HandleInteractions();
+		onUpdate?.Invoke(this);
 	}
 
-	public void SwitchToScreen(TerminalScreen newScreen, bool canReturn) {
-		_screen?.OnScreenExit(this);
-		SetParametersfrom(newScreen);
-		newScreen.OnScreenLoad(this);
-		_previous = canReturn ? _screen : null;
-		_screen = newScreen;
+	public void Load() {
+		onLoad?.Invoke(this);
 	}
 
-	public void SetScreenText(string passedText) {
-		textElement.text = passedText;
-	}
-
-	public void ReturnToPrevious() {
-		if (!(_previous is null)) {
-			SwitchToScreen(_previous, false);
-		}
-	}
-
-	public void Boot() {
-		SwitchToScreen(loadScreen, false);
+	public void Exit() {
+		onExit?.Invoke(this);
 	}
 
 	public Canvas GetCanvas() {
-		return textElement.canvas;
+		return canvas;
 	}
 
 	// Internal Methods
-	private void HandleInteractions(TerminalScreen behavior) {
+	private void HandleInteractions() {
 		if (Input.anyKeyDown) {
-			behavior.OnInteract(this, TerminalInteraction.ANY);
+			interaction?.Invoke(this, TerminalInput.ANY);
 		}
-		else foreach (KeyValuePair<KeyCode, TerminalInteraction> entry in _inputMap) {
+		else foreach (KeyValuePair<KeyCode, TerminalInput> entry in _inputMap) {
 			if (Input.GetKeyDown(entry.Key)) {
-				behavior.OnInteract(this, entry.Value);
+				interaction?.Invoke(this, entry.Value);
 				return;
 			}
 		}
-	}
-
-	private void SetParametersfrom(TerminalScreen terminalScreen) {
-		textElement.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, terminalScreen.screenWidth);
-		textElement.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, terminalScreen.screenHeight);
-		textElement.alignment = terminalScreen.anchor;
 	}
 }

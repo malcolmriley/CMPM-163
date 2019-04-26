@@ -2,9 +2,11 @@
 using GameTerminal;
 using System.Text;
 using System;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "TerminalScreen", menuName = "DataContainers/TerminalScreen")]
-public class TerminalScreen : ScriptableObject {
+[CreateAssetMenu(fileName = "TerminalText", menuName = "DataContainers/TerminalText")]
+public class TerminalText : ScriptableObject, ITerminalBehavior {
 	// Public Constants
 	public const int WIDTH_DEFAULT = 400;
 	public const int HEIGHT_DEFAULT = 320;
@@ -33,6 +35,12 @@ public class TerminalScreen : ScriptableObject {
 	[NonSerialized]
 	protected bool _completed = false;
 
+	public void ApplyProperties(Text textElement) {
+		textElement.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, screenWidth);
+		textElement.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, screenHeight);
+		textElement.alignment = anchor;
+	}
+
 	public virtual void OnScreenLoad(TerminalManager manager) {
 		if (loadSpeed < 1.0F) {
 			_builder = new StringBuilder();
@@ -40,7 +48,6 @@ public class TerminalScreen : ScriptableObject {
 			_builder.AppendLine(_lines[0]);
 		}
 		else {
-			manager.SetScreenText(textAsset.text);
 			_completed = true;
 		}
 		_loaded = true;
@@ -58,7 +65,6 @@ public class TerminalScreen : ScriptableObject {
 				_loadProgress = 0.0F;
 				if (_lineProgress < _lines.Length) {
 					_builder.AppendLine(_lines[_lineProgress]);
-					manager.SetScreenText(_builder.ToString());
 				}
 				else {
 					_completed = true;
@@ -67,15 +73,13 @@ public class TerminalScreen : ScriptableObject {
 		}
 	}
 
-	public virtual void OnInteract(TerminalManager manager, TerminalInteraction interaction) {
-		if (interaction == TerminalInteraction.BACK) {
-			manager.ReturnToPrevious();
-		}
+	public virtual void OnInteract(TerminalManager manager, TerminalInput interaction) {
+
 	}
 }
 
 namespace GameTerminal {
-	public enum TerminalInteraction {
+	public enum TerminalInput {
 		UP,
 		DOWN,
 		LEFT,
@@ -84,4 +88,17 @@ namespace GameTerminal {
 		SELECT,
 		ANY,
 	}
+
+	public interface ITerminalBehavior {
+		void OnScreenLoad(TerminalManager manager);
+		void OnScreenExit(TerminalManager manager);
+		void OnScreenUpdate(TerminalManager manager);
+		void OnInteract(TerminalManager manager, TerminalInput interaction);
+	}
+
+	[Serializable]
+	public class TerminalInteraction : UnityEvent<TerminalManager, TerminalInput> { }
+
+	[Serializable]
+	public class TerminalEvent : UnityEvent<TerminalManager> { }
 }

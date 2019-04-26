@@ -10760,8 +10760,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2dc6ce746f174b90be941aea5c05555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textElement: {fileID: 62158908}
-  loadScreen: {fileID: 11400000, guid: a30745e691a994641a450ea4fe553463, type: 2}
+  textElement: {fileID: 0}
+  interaction:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: GameTerminal.TerminalInteraction, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onLoad:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: GameTerminal.TerminalEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: GameTerminal.TerminalEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onExit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: GameTerminal.TerminalEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1988859870
 GameObject:
   m_ObjectHideFlags: 0
