@@ -22,6 +22,13 @@ namespace GameTerminal {
 		void OnInteract(TerminalManager manager, TerminalInput interaction);
 	}
 
+	public abstract class TerminalBehavior : MonoBehaviour, ITerminalBehavior {
+		public abstract void OnScreenLoad(TerminalManager manager);
+		public abstract void OnScreenExit(TerminalManager manager);
+		public abstract void OnScreenUpdate(TerminalManager manager);
+		public abstract void OnInteract(TerminalManager manager, TerminalInput interaction);
+	}
+
 	[Serializable]
 	public class TerminalInteraction : UnityEvent<TerminalManager, TerminalInput> { }
 
@@ -33,9 +40,10 @@ public class TerminalManager : MonoBehaviour {
 
 	// Public Fields
 	public Canvas canvas;
+	public GameObject bootScreen;
 	public TerminalInteraction interaction;
 	public TerminalEvent onStart;
-	public TerminalEvent onLoad;
+	public TerminalEvent onBoot;
 	public TerminalEvent onUpdate;
 	public TerminalEvent onExit;
 
@@ -48,22 +56,44 @@ public class TerminalManager : MonoBehaviour {
 		[KeyCode.D] = TerminalInput.RIGHT,
 		[KeyCode.Space] = TerminalInput.BACK
 	};
+	private GameObject _currentScreen;
+	private GameObject _previousScreen;
 
 	void Start() {
 		onStart?.Invoke(this);
+		Boot();
 	}
 
 	void Update() {
 		HandleInteractions();
 		onUpdate?.Invoke(this);
+		_currentScreen?.GetComponent<TerminalBehavior>()?.OnScreenUpdate(this);
 	}
 
-	public void Load() {
-		onLoad?.Invoke(this);
+	public void Boot() {
+		onBoot?.Invoke(this);
+		if (!(bootScreen is null)) {
+			_currentScreen = Instantiate(bootScreen, canvas.transform);
+			_currentScreen.GetComponent<TerminalBehavior>()?.OnScreenLoad(this);
+		}
 	}
 
 	public void Exit() {
 		onExit?.Invoke(this);
+		_currentScreen?.GetComponent<TerminalBehavior>()?.OnScreenExit(this);
+	}
+
+	public void SetScreen(GameObject passedObject, bool destroyPrevious) {
+		_currentScreen?.GetComponent<TerminalBehavior>()?.OnScreenExit(this);
+		passedObject?.GetComponent<TerminalBehavior>()?.OnScreenLoad(this);
+		if (destroyPrevious) {
+			Destroy(_currentScreen);
+			Destroy(_previousScreen);
+		}
+		else {
+			_previousScreen = _currentScreen;
+		}
+		_currentScreen = passedObject;
 	}
 
 	public Canvas GetCanvas() {
@@ -73,13 +103,18 @@ public class TerminalManager : MonoBehaviour {
 	// Internal Methods
 	private void HandleInteractions() {
 		if (Input.anyKeyDown) {
-			interaction?.Invoke(this, TerminalInput.ANY);
+			AttemptInteraction(TerminalInput.ANY);
 		}
 		else foreach (KeyValuePair<KeyCode, TerminalInput> entry in _inputMap) {
 			if (Input.GetKeyDown(entry.Key)) {
-				interaction?.Invoke(this, entry.Value);
+				AttemptInteraction(entry.Value);
 				return;
 			}
 		}
+	}
+
+	private void AttemptInteraction(TerminalInput input) {
+		interaction?.Invoke(this, input);
+		_currentScreen?.GetComponent<TerminalBehavior>()?.OnInteract(this, input);
 	}
 }

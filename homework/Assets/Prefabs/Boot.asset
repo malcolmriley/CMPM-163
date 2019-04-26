@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce4cbe0184d2422799b695268412295, type: 3}
   m_Name: Boot
   m_EditorClassIdentifier: 
-  anchor: 0
-  textAsset: {fileID: 0}
-  screenWidth: 400
-  screenHeight: 320
-  loadSpeed: 0.05
+  anchor: 3
+  textAsset: {fileID: 4900000, guid: 213e5fcea68d0438eb5a939ede3816ae, type: 3}
+  screenWidth: 460
+  screenHeight: 260
+  loadSpeed: 1

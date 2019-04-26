@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Load
   m_EditorClassIdentifier: 
   anchor: 0
-  textAsset: {fileID: 0}
+  textAsset: {fileID: 4900000, guid: 4cfb5f3b9adf44180976ab90ab271725, type: 3}
   screenWidth: 400
   screenHeight: 320
   loadSpeed: 0.05
