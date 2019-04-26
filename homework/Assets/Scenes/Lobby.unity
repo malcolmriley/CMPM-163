@@ -10702,7 +10702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 767371370}
-  bootScreen: {fileID: 590643571629960468, guid: f582ac616acb14acc8775e28479278f0,
+  bootScreen: {fileID: 1560334976553149316, guid: 220051f5fb9b04a51b20c4d58cc003df,
     type: 3}
   interaction:
     m_PersistentCalls:

@@ -39,7 +39,7 @@ public class TextScreen : TerminalBehavior {
 
 	public override void OnScreenUpdate(TerminalManager manager) {
 		if (_loaded && !_completed) {
-			_loadProgress += textObject.loadSpeed;
+			_loadProgress += textObject.loadSpeed - Random.Range(0.7F * textObject.loadSpeed, 0.0F);
 			if (_loadProgress >= 1.0F) {
 				_lineProgress += 1;
 				_loadProgress = 0.0F;
