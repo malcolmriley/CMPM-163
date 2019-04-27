@@ -11231,7 +11231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 767371370}
   screenMesh: {fileID: 1403942191}
-  bootScreen: {fileID: 1560334976553149316, guid: 220051f5fb9b04a51b20c4d58cc003df,
+  bootScreen: {fileID: 9050385978502797675, guid: 4b8192b2d2d29434aa8838644bbb576e,
     type: 3}
   interaction:
     m_PersistentCalls:
