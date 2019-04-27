@@ -89,14 +89,14 @@ public class TerminalManager : MonoBehaviour {
 				_currentScreen = Instantiate(bootScreen, canvas.transform);
 				_currentScreen.GetComponent<TerminalBehavior>()?.OnScreenLoad(this);
 			}
-			_effectIntensity = 1.0F;
+			ResetMonitor();
 			ApplyEffects(_effectIntensity);
 			_booted = true;
 		}
 	}
 
 	public void ResetMonitor() {
-		_effectIntensity = 0.5F;
+		_effectIntensity = 1.0F;
 	}
 
 	public void Exit() {

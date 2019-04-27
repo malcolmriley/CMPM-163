@@ -24,7 +24,7 @@ public class LookManager : MonoBehaviour {
 	private Quaternion _lastRotation;
 
 	// Internal Fields
-	private string _currentTarget;
+	private Transform _currentTarget;
 	private Transform _lookTarget;
 	private bool _isInteracting;
 	private float _lookProgress;
@@ -32,6 +32,7 @@ public class LookManager : MonoBehaviour {
 
 	public void Start() {
 		_camera = GetComponent<Camera>();
+		_currentTarget = defaultTransform;
 		UpdateLastTransform();
 	}
 
@@ -57,17 +58,14 @@ public class LookManager : MonoBehaviour {
 		if (Physics.Raycast(ray, out RaycastHit hit, 20.0F)) {
 			LookTarget target = hit.collider.gameObject.GetComponent<LookTarget>();
 			if (!(target is null)) {
+				uiComponent.sprite = (target.interactOverride == null) ? interactSprite : target.interactOverride;
+				FadeTo(fadeSpeed);
 				if (Input.GetMouseButtonDown(0) && !_isInteracting) {
 					// When Clicked, set move target
 					SetLookTarget(target.cameraMoveTarget);
 					target.onLookAt?.Invoke();
 				}
-				else if (!target.cameraMoveTarget.name.Equals(_currentTarget)){
-					// If mouseover and not looking
-					uiComponent.sprite = (target.interactOverride is null) ? interactSprite : target.interactOverride;
-					FadeTo(fadeSpeed);
-				}
-				else if (!target.cameraMoveTarget.name.Equals(defaultTransform.name)){
+				if (_currentTarget.Equals(target.cameraMoveTarget)){
 					// If mouseover and looking
 					uiComponent.sprite = exitSprite;
 					FadeTo(fadeSpeed);
@@ -96,10 +94,12 @@ public class LookManager : MonoBehaviour {
 	}
 
 	private void SetLookTarget(Transform passedTransform) {
-		_isInteracting = true;
-		_lookProgress = 0.0F;
-		_lookTarget = passedTransform;
-		_currentTarget = passedTransform.name;
+		if (passedTransform != null) {
+			_isInteracting = true;
+			_lookProgress = 0.0F;
+			_lookTarget = passedTransform;
+			_currentTarget = passedTransform;
+		}
 	}
 
 	private void UpdateLastTransform() {
