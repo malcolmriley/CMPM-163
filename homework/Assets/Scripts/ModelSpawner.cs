@@ -11,10 +11,6 @@ public class ModelSpawner : MonoBehaviour {
 	private GameObject _currentObject;
 	private int _index;
 
-	public void Start() {
-		Select(0);
-	}
-
 	public void Select(int index) {
 		_index = index % (objects.Count - 1);
 		GameObject prototype = objects[index];
