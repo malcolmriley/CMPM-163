@@ -70,7 +70,7 @@
 					phong += getPhong(lightCoordinates, unity_LightColor[index], input.worldCoords, normalize(input.surfaceNormal));
 				}
 				
-				float4 averageChroma = (unity_LightColor[0] + unity_LightColor[1] + unity_LightColor[2] + unity_LightColor[3]) / 4;
+				float4 averageChroma = (unity_LightColor[0] + unity_LightColor[1] + unity_LightColor[2] + unity_LightColor[3]) * 0.25;
 				
 				return _Ambience * averageChroma + texColor + phong;
 			}
