@@ -64,7 +64,7 @@ public class LookManager : MonoBehaviour {
 				}
 				else if (!target.cameraMoveTarget.name.Equals(_currentTarget)){
 					// If mouseover and not looking
-					uiComponent.sprite = interactSprite;
+					uiComponent.sprite = (target.interactOverride is null) ? interactSprite : target.interactOverride;
 					FadeTo(fadeSpeed);
 				}
 				else if (!target.cameraMoveTarget.name.Equals(defaultTransform.name)){

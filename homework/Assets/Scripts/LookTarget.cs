@@ -8,5 +8,6 @@ using UnityEngine.Events;
 public class LookTarget : MonoBehaviour {
 	// Public Fields
 	public Transform cameraMoveTarget;
+	public Sprite interactOverride;
 	public UnityEvent onLookAt;
 }

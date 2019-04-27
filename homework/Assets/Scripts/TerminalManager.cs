@@ -75,9 +75,11 @@ public class TerminalManager : MonoBehaviour {
 	void Update() {
 		HandleInteractions();
 		onUpdate?.Invoke(this);
-		_effectIntensity = Mathf.Clamp(_effectIntensity - effectRate, -3.0F, 1.0F);
-		ApplyEffects(_effectIntensity);
 		_currentScreen?.GetComponent<TerminalBehavior>()?.OnScreenUpdate(this);
+		if (_booted) {
+			_effectIntensity = Mathf.Clamp(_effectIntensity - effectRate, -3.0F, 1.0F);
+			ApplyEffects(_effectIntensity);
+		}
 	}
 
 	public void Boot() {
