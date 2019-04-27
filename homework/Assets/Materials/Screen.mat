@@ -60,6 +60,7 @@ Material:
         m_Scale: {x: 1, y: 60}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BlurRatio: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -71,7 +72,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ScanIntensity: 0.1
+    - _ScanIntensity: 0
+    - _Sharpness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

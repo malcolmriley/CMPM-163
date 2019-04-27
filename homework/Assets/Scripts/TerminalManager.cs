@@ -40,12 +40,16 @@ public class TerminalManager : MonoBehaviour {
 
 	// Public Fields
 	public Canvas canvas;
+	public MeshRenderer screenMesh;
 	public GameObject bootScreen;
 	public TerminalInteraction interaction;
 	public TerminalEvent onStart;
 	public TerminalEvent onBoot;
 	public TerminalEvent onUpdate;
 	public TerminalEvent onExit;
+
+	[Range(0.0F, 0.1F)]
+	public float effectRate = 0.01F;
 
 	// Internal Fields
 	private Dictionary<KeyCode, TerminalInput> _inputMap = new Dictionary<KeyCode, TerminalInput> {
@@ -56,9 +60,13 @@ public class TerminalManager : MonoBehaviour {
 		[KeyCode.D] = TerminalInput.RIGHT,
 		[KeyCode.Space] = TerminalInput.BACK
 	};
+	private float _effectIntensity;
 	private bool _booted;
 	private GameObject _currentScreen;
 	private GameObject _previousScreen;
+
+	private const string SCAN_INTENSITY = "_ScanIntensity";
+	private const string BLUR_INTENSITY = "_Sharpness";
 
 	void Start() {
 		onStart?.Invoke(this);
@@ -67,6 +75,8 @@ public class TerminalManager : MonoBehaviour {
 	void Update() {
 		HandleInteractions();
 		onUpdate?.Invoke(this);
+		_effectIntensity = Mathf.Clamp(_effectIntensity - effectRate, -3.0F, 1.0F);
+		ApplyEffects(_effectIntensity);
 		_currentScreen?.GetComponent<TerminalBehavior>()?.OnScreenUpdate(this);
 	}
 
@@ -77,12 +87,20 @@ public class TerminalManager : MonoBehaviour {
 				_currentScreen = Instantiate(bootScreen, canvas.transform);
 				_currentScreen.GetComponent<TerminalBehavior>()?.OnScreenLoad(this);
 			}
+			_effectIntensity = 1.0F;
+			ApplyEffects(_effectIntensity);
+			_booted = true;
 		}
+	}
+
+	public void ResetMonitor() {
+		_effectIntensity = 0.5F;
 	}
 
 	public void Exit() {
 		onExit?.Invoke(this);
 		_currentScreen?.GetComponent<TerminalBehavior>()?.OnScreenExit(this);
+		ApplyEffects(0.0F);
 	}
 
 	public void SetScreen(GameObject passedObject, bool destroyPrevious) {
@@ -118,5 +136,14 @@ public class TerminalManager : MonoBehaviour {
 	private void AttemptInteraction(TerminalInput input) {
 		interaction?.Invoke(this, input);
 		_currentScreen?.GetComponent<TerminalBehavior>()?.OnInteract(this, input);
+	}
+
+	private void ApplyEffects(float intensity) {
+		SetMaterialProperty(BLUR_INTENSITY, intensity);
+		SetMaterialProperty(SCAN_INTENSITY, 0.08F * (intensity + 1));
+	}
+
+	private void SetMaterialProperty(string property, float value) {
+		screenMesh?.material.SetFloat(property, value);
 	}
 }

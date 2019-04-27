@@ -81,7 +81,8 @@
 				fixed4 centerBias = _ScanIntensity * 0.5 * tex2D(_ScanLines, input.uv);
 				
 				// Final Composite Color
-				return _Color * (baseColor + smallLines + bigLines + centerBias);
+				fixed4 final = _Color * (baseColor + smallLines + bigLines + centerBias);
+				return clamp(final, fixed4(0,0,0,0), fixed4(1,1,1,1));
 			}
 
 			ENDCG
