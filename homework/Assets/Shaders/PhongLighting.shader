@@ -35,6 +35,7 @@
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
+			float4 _AmbientColor;
 			float _Ambience;
 			float _Shininess;
 			float _Diffusion;
@@ -45,7 +46,7 @@
 				float3 viewDirection = normalize(_WorldSpaceCameraPos - worldCoordinates);
 				float3 halfway = normalize(viewDirection + lightDirection);
 			
-				float3 diffuse = _Diffusion * max(dot(surfaceNormal, lightDirection), 0);
+				float3 diffuse = _Diffusion * dot(surfaceNormal, lightDirection);
 				float3 specular = _Specularity * lightColor * pow(max(dot(surfaceNormal, halfway), 0), _Shininess);
 				
 				return float4(diffuse + specular, 1);
@@ -56,7 +57,7 @@
 				output.vertex = UnityObjectToClipPos(input.vertex);
 				output.uv = TRANSFORM_TEX(input.uv, _MainTex);
 				output.worldCoords = mul(unity_ObjectToWorld, input.vertex);
-				output.surfaceNormal = input.normal;
+				output.surfaceNormal = UnityObjectToWorldNormal(input.normal);
 				return output;
 			}
 
@@ -66,10 +67,12 @@
 				
 				for (int index = 0; index < 4; index += 1) {
 					float3 lightCoordinates = float3(unity_4LightPosX0[index], unity_4LightPosY0[index], unity_4LightPosZ0[index]);
-					phong += getPhong(lightCoordinates, unity_LightColor[index], input.worldCoords, input.surfaceNormal);
+					phong += getPhong(lightCoordinates, unity_LightColor[index], input.worldCoords, normalize(input.surfaceNormal));
 				}
 				
-				return _Ambience + texColor + phong;
+				float4 averageChroma = (unity_LightColor[0] + unity_LightColor[1] + unity_LightColor[2] + unity_LightColor[3]) / 4;
+				
+				return _Ambience * averageChroma + texColor + phong;
 			}
 
 			ENDCG
