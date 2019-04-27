@@ -1,19 +1,21 @@
 ﻿Shader "Custom/Dissolve" {
 	Properties {
 		_MainTex ("Texture", 2D) = "white" {}
+		_DissolveTex("Dissolve", 2D) = "white" {}
+		_RampTex("Color Ramp", 2D) = "white" {}
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
-		LOD 100
+		Tags { "Queue"="Transparent" }
+		Blend SrcAlpha OneMinusSrcAlpha
 
 		Pass {
 			CGPROGRAM
 
-			#pragma vertex vert
-			#pragma fragment frag
-			#pragma multi_compile_fog
+			#pragma vertex ShaderVertex
+			#pragma fragment ShaderFragment
 
 			#include "UnityCG.cginc"
+			#include "ShaderCommon.cginc"
 
 			struct VertexInput {
 				float4 vertex : POSITION;
@@ -21,26 +23,39 @@
 			};
 
 			struct VertexOutput {
-				float2 uv : TEXCOORD0;
-				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
+				float2 uv : TEXCOORD0;
 			};
-
+			
 			sampler2D _MainTex;
+			sampler2D _DissolveTex;
+			sampler2D _RampTex;
 			float4 _MainTex_ST;
+			float4 _DissolveTex_ST;
 
-			VertexOutput vert (VertexInput input) {
+			VertexOutput ShaderVertex (VertexInput input) {
 				VertexOutput output;
 				output.vertex = UnityObjectToClipPos(input.vertex);
 				output.uv = TRANSFORM_TEX(input.uv, _MainTex);
-				UNITY_TRANSFER_FOG(output, output.vertex);
 				return output;
 			}
 
-			fixed4 frag (VertexOutput input) : SV_Target {
-				fixed4 col = tex2D(_MainTex, input.uv);
-				UNITY_APPLY_FOG(input.fogCoord, col);
-				return col;
+			fixed4 ShaderFragment (VertexOutput input) : SV_Target {
+				fixed4 textureColor = tex2D(_MainTex, input.uv);
+				float dissolve = tex2D(_DissolveTex, input.uv);
+				fixed4 useColor = textureColor;
+				float progress = _SinTime.w;
+				if (progress > 0.0) {
+					if (dissolve < progress) {
+						return fixed4(0.0, 0.0, 0.0, 0.0);
+					}
+					if (dissolve - progress < 0.15) {
+						float dissolveProgress = (dissolve - progress) / 0.15;
+						useColor = (textureColor * dissolveProgress) + (tex2D(_RampTex, float2(dissolveProgress, 1.0)) * (1 - dissolveProgress));
+						useColor.a = textureColor.a;
+					}
+				}
+				return useColor;
 			}
 
 			ENDCG

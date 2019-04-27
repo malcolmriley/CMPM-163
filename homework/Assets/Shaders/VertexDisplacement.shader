@@ -1,11 +1,10 @@
 ﻿Shader "Custom/VertexDisplacement" {
 	Properties {
 		_MainTex ("Texture", 2D) = "white" {}
-		_Color ("Color", Color) = (1, 1, 1, 1)
+		_NoiseTex ("Texture", 2D) = "white" {}
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
-		LOD 100
 
 		Pass {
 			CGPROGRAM
@@ -18,12 +17,12 @@
 
 			struct VertexInput {
 				float4 vertex : POSITION;
+				float4 normal : NORMAL;
 				float2 uv : TEXCOORD0;
 			};
 
 			struct VertexOutput {
 				float2 uv : TEXCOORD0;
-				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
 			};
 
@@ -32,16 +31,15 @@
 
 			VertexOutput vert (VertexInput input) {
 				VertexOutput output;
-				output.vertex = UnityObjectToClipPos(input.vertex);
+				float4 simpleVertex = UnityObjectToClipPos(input.vertex);
+				output.vertex = simpleVertex;
+				simpleVertex += input.normal * 2.0F;
 				output.uv = TRANSFORM_TEX(input.uv, _MainTex);
-				UNITY_TRANSFER_FOG(output, output.vertex);
 				return output;
 			}
 
 			fixed4 frag (VertexOutput input) : SV_Target {
-				fixed4 col = tex2D(_MainTex, input.uv);
-				UNITY_APPLY_FOG(input.fogCoord, col);
-				return col;
+				return tex2D(_MainTex, input.uv);
 			}
 
 			ENDCG
