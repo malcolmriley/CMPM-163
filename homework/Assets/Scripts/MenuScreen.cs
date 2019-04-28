@@ -42,7 +42,6 @@ public class MenuScreen : TerminalBehavior {
 
 	public override void OnScreenLoad(TerminalManager manager) {
 		if (!_loaded) {
-			Select(0);
 			menuInstances = new List<GameObject>();
 			float offset = 0;
 			const float padding = 6.0F;
@@ -59,6 +58,7 @@ public class MenuScreen : TerminalBehavior {
 				offset += padding;
 			}
 			_loaded = true;
+			Select(0);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class MenuScreen : TerminalBehavior {
 	// Internal Methods
 	private void Select(int value) {
 		GetSelected().SetSelected(false);
-		_selected = value % (menuItems.Count - 1);
+		_selected = value % menuItems.Count;
 		GetSelected().SetSelected(true);
 	}
 
