@@ -59,7 +59,7 @@ public class TextScreen : TerminalBehavior {
 		if (_completed) {
 			_linger += Time.deltaTime;
 			if (_linger > textObject.lingerDuration) {
-				if (nextScreen is null) {
+				if (nextScreen == null) {
 					manager.ReturnToPrevious(true);
 				}
 				else {
