@@ -117,6 +117,7 @@ public class TerminalManager : MonoBehaviour {
 				_previousScreen = _currentScreen;
 			}
 			_currentScreen = newScreen;
+			_currentScreen.SetActive(true);
 		}
 	}
 
