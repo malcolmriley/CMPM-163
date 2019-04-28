@@ -17,3 +17,4 @@ MonoBehaviour:
   screenWidth: 460
   screenHeight: 260
   loadSpeed: 1
+  lingerDuration: 2

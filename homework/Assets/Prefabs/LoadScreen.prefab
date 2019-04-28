@@ -12,6 +12,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 908678754530506554, guid: 6f0afea64386940e4a8a8988979a2d14,
+        type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 11400000, guid: a30745e691a994641a450ea4fe553463,
+        type: 2}
+    - target: {fileID: 908678754530506554, guid: 6f0afea64386940e4a8a8988979a2d14,
+        type: 3}
+      propertyPath: textObject
+      value: 
+      objectReference: {fileID: 11400000, guid: a30745e691a994641a450ea4fe553463,
+        type: 2}
+    - target: {fileID: 908678754530506554, guid: 6f0afea64386940e4a8a8988979a2d14,
+        type: 3}
+      propertyPath: nextScreen
+      value: 
+      objectReference: {fileID: 590643571629960468, guid: f582ac616acb14acc8775e28479278f0,
+        type: 3}
     - target: {fileID: 908678754530506559, guid: 6f0afea64386940e4a8a8988979a2d14,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -117,17 +135,5 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 908678754530506554, guid: 6f0afea64386940e4a8a8988979a2d14,
-        type: 3}
-      propertyPath: text
-      value: 
-      objectReference: {fileID: 11400000, guid: a30745e691a994641a450ea4fe553463,
-        type: 2}
-    - target: {fileID: 908678754530506554, guid: 6f0afea64386940e4a8a8988979a2d14,
-        type: 3}
-      propertyPath: textObject
-      value: 
-      objectReference: {fileID: 11400000, guid: a30745e691a994641a450ea4fe553463,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f0afea64386940e4a8a8988979a2d14, type: 3}
