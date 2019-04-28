@@ -5,16 +5,8 @@
 \usepackage{ragged2e}
 \usepackage{listings}
 \usepackage{graphicx}
-
-% COMMAND DEFINITIONS ------------------------------------------
-\newcommand{\skipsmall}{\vskip 0.5em}
-\newcommand{\thickrule}{\rule{\textwidth}{2pt}}
-\newcommand{\preparetitle}[1]{\title{Writeup: Homework \##1}}
-\setlength{\droptitle}{-30pt}
-
-\newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\codesingle}[1]{\begin{center}\fbox{\begin{minipage}{0.85\linewidth}\ttfamily#1\end{minipage}}\end{center}}
-\newcommand{\codesample}[1]{\begin{center}\fbox{\begin{minipage}{0.85\linewidth}\lstinputlisting[style=normal]{#1} \vspace{1em} \centering $\downarrow$ \par \vspace{1em} \input{#1} \\ \vspace{0.5em} \end{minipage}}\end{center}}
+\usepackage{booktabs}
+\usepackage{hyperref}
 
 % FONT SELECTION -----------------------------------------------
 \usepackage{tgschola}
@@ -31,7 +23,25 @@
 
 \setlist[enumerate,1]{label=\textbf{\Alph*.}, left = 0.5em, labelsep = 1em}
 
+\lstset{inputencoding=utf8,language=C}
 \lstdefinestyle{normal}{basicstyle=\ttfamily\small,breaklines=true,breakatwhitespace=true}
-\lstdefinestyle{standalone}{frame=single,numbers=left,basicstyle=\ttfamily\small,breaklines=true}
+\lstdefinestyle{standalone}{frame=single,numbers=left,basicstyle=\ttfamily\footnotesize,breaklines=true,tabsize=2}
+
+\hypersetup{hidelinks}
 
 \author{Malcolm Riley}
+
+% COMMAND DEFINITIONS ------------------------------------------
+\newcommand{\skipsmall}{\vskip 0.5em}
+\newcommand{\thickrule}{\rule{\textwidth}{2pt}}
+\newcommand{\preparetitle}[1]{\title{Writeup: Homework \##1}}
+\setlength{\droptitle}{-30pt}
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\codesingle}[1]{\begin{center}\fbox{\begin{minipage}{0.85\linewidth}\ttfamily#1\end{minipage}}\end{center}}
+\newcommand{\codesample}[1]{\begin{center}\fbox{\begin{minipage}{0.85\linewidth}\lstinputlisting[style=standalone]{#1} \vspace{1em} \centering $\downarrow$ \par \vspace{1em} \input{#1} \\ \vspace{0.5em} \end{minipage}}\end{center}}
+
+\newcommand{\tablehead}[1]{\toprule[2pt]#1\\ \toprule[2pt] \endhead}
+\newcommand{\tablefoot}{\bottomrule[2pt]}
+
+\newcommand{\quotes}[1]{``#1''}
