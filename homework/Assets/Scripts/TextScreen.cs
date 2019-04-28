@@ -56,10 +56,15 @@ public class TextScreen : TerminalBehavior {
 			}
 		}
 
-		if (_completed && nextScreen != null) {
+		if (_completed) {
 			_linger += Time.deltaTime;
 			if (_linger > textObject.lingerDuration) {
-				manager.SetScreen(nextScreen, true);
+				if (nextScreen is null) {
+					manager.ReturnToPrevious(true);
+				}
+				else {
+					manager.SetScreen(nextScreen, true);
+				}
 			}
 		}
 	}
