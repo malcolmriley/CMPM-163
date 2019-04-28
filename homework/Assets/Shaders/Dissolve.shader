@@ -15,7 +15,6 @@
 			#pragma fragment ShaderFragment
 
 			#include "UnityCG.cginc"
-			#include "ShaderCommon.cginc"
 
 			struct VertexInput {
 				float4 vertex : POSITION;
