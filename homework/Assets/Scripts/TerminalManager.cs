@@ -105,6 +105,12 @@ public class TerminalManager : MonoBehaviour {
 		ApplyEffects(0.0F);
 	}
 
+	public void ReturnToPrevious(bool destroyCurrent) {
+		if (!(_previousScreen is null)) {
+			SetScreen(_previousScreen, destroyCurrent);
+		}
+	}
+
 	public void SetScreen(GameObject passedObject, bool destroyPrevious) {
 		_currentScreen?.GetComponent<TerminalBehavior>()?.OnScreenExit(this);
 		passedObject?.GetComponent<TerminalBehavior>()?.OnScreenLoad(this);
