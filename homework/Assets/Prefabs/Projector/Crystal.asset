@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: cb498c31561064ca89c8e55e3b798e95, type: 3}
   m_Name: Crystal
   m_EditorClassIdentifier: Assembly-CSharp::Hologram
   projection: {fileID: 888193747745823565, guid: 1c8f8528e73234b55ad5e8f191425b04,

@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "MenuItem", menuName = "DataContainers/MenuItem")]
 public class MenuItem : ScriptableObject {
 
