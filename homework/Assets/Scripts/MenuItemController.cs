@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MenuItemController : MonoBehaviour {
 
 	// Public References
+	public GameObject nextScreen;
 	public Image fileIcon;
 	public Text filename;
 	public Text filetype;
