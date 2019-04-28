@@ -11,4 +11,5 @@ public class LookTarget : MonoBehaviour {
 	public Sprite interactOverride;
 	public UnityEvent onLookAt;
 	public bool isCurrentTarget;
+	public bool ignoreFocus;
 }

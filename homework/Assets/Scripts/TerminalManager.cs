@@ -44,6 +44,7 @@ public class TerminalManager : MonoBehaviour {
 	public GameObject bootScreen;
 	public Transform projectorOutput;
 	public LookTarget target;
+	public AudioSource source;
 	public TerminalInteraction interaction;
 	public TerminalEvent onStart;
 	public TerminalEvent onBoot;
@@ -152,14 +153,11 @@ public class TerminalManager : MonoBehaviour {
 					return;
 				}
 			}
-			if (Input.anyKeyDown) {
-				AttemptInteraction(TerminalInput.ANY);
-			}
 		}
 	}
 
 	private bool ShouldInteract() {
-		return _booted && target.isCurrentTarget;
+		return _booted; // && target.isCurrentTarget;
 	}
 
 	private void AttemptInteraction(TerminalInput input) {

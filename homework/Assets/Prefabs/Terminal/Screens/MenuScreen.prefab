@@ -353,6 +353,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 743f56a790320449db64ef7ec6eda1f9, type: 2}
   - {fileID: 11400000, guid: 4240d84b4feb5492fa85e5ad2eb5ab3d, type: 2}
   - {fileID: 11400000, guid: e6249815426db48d59b8c4626430a68b, type: 2}
+  selectSound: {fileID: 8300000, guid: 55263093b4a764934a4bf853d7079b88, type: 3}
+  scrollSound: {fileID: 8300000, guid: 643a7bcd92b1649e3a6dda369549f495, type: 3}
 --- !u!1 &1381152140798168337
 GameObject:
   m_ObjectHideFlags: 0

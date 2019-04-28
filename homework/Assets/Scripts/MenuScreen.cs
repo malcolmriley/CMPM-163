@@ -8,6 +8,8 @@ public class MenuScreen : TerminalBehavior {
 	public RectTransform menuRegion;
 	public GameObject menuItemPrefab;
 	public List<MenuItem> menuItems;
+	public AudioClip selectSound;
+	public AudioClip scrollSound;
 
 	// Internal Fields
 	private List<GameObject> menuInstances;
@@ -18,9 +20,11 @@ public class MenuScreen : TerminalBehavior {
 		switch (interaction) {
 			case TerminalInput.UP:
 				Select(_selected - 1);
+				manager.source.PlayOneShot(scrollSound);
 				break;
 			case TerminalInput.DOWN:
 				Select(_selected + 1);
+				manager.source.PlayOneShot(scrollSound);
 				break;
 			case TerminalInput.LEFT:
 				break;
@@ -30,6 +34,7 @@ public class MenuScreen : TerminalBehavior {
 				break;
 			case TerminalInput.SELECT:
 				manager.SetScreen(GetSelected().nextScreen, false);
+				manager.source.PlayOneShot(selectSound);
 				break;
 			case TerminalInput.ANY:
 				break;
