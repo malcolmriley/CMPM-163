@@ -11231,7 +11231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 767371370}
   screenMesh: {fileID: 1403942191}
-  bootScreen: {fileID: 1560334976553149316, guid: 220051f5fb9b04a51b20c4d58cc003df,
+  bootScreen: {fileID: 1381152140531989289, guid: c884e245bd22f4d15993755db48b4181,
     type: 3}
   projectorOutput: {fileID: 1061551698}
   interaction:

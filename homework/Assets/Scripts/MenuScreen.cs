@@ -17,10 +17,10 @@ public class MenuScreen : TerminalBehavior {
 	public override void OnInteract(TerminalManager manager, TerminalInput interaction) {
 		switch (interaction) {
 			case TerminalInput.UP:
-				Select(_selected + 1);
+				Select(_selected - 1);
 				break;
 			case TerminalInput.DOWN:
-				Select(_selected - 1);
+				Select(_selected + 1);
 				break;
 			case TerminalInput.LEFT:
 				break;
@@ -47,7 +47,7 @@ public class MenuScreen : TerminalBehavior {
 			const float padding = 6.0F;
 			foreach (MenuItem iteratedItem in menuItems) {
 				GameObject newMenuInstance = Instantiate(menuItemPrefab, menuRegion);
-				newMenuInstance.transform.localPosition = new Vector3(0, offset, 0);
+				// newMenuInstance.transform.localPosition = new Vector3(0, offset, 0);
 				ConfigureMenuItem(newMenuInstance, iteratedItem);
 				menuInstances.Add(newMenuInstance);
 
@@ -69,7 +69,7 @@ public class MenuScreen : TerminalBehavior {
 	// Internal Methods
 	private void Select(int value) {
 		GetSelected().SetSelected(false);
-		_selected = value % menuItems.Count;
+		_selected = (menuItems.Count + value) % menuItems.Count;
 		GetSelected().SetSelected(true);
 	}
 
