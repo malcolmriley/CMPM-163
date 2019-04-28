@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hologram
   projection: {fileID: 6059881175472419084, guid: 6837d28eabbb248329416ad1ce8f1d29,
     type: 3}
+  screenSprite: {fileID: 21300000, guid: bac137350fef04883a3538dfab2f1d6e, type: 3}
   itemName: CUBE
   itemType: VERTEX DISPLACEMENT

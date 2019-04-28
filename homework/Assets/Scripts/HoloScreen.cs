@@ -8,6 +8,7 @@ public class HoloScreen : TerminalBehavior {
 
 	// Public Fields
 	public Hologram hologram;
+	public Image depiction;
 	public Text renderName;
 	public Text renderType;
 
@@ -42,6 +43,7 @@ public class HoloScreen : TerminalBehavior {
 		_renderInstance = Instantiate(hologram.projection, manager.projectorOutput);
 		renderName.text = hologram.itemName;
 		renderType.text = string.Format("Render Type: {0}", hologram.itemType);
+		depiction.sprite = hologram.screenSprite;
 	}
 
 	public override void OnScreenUpdate(TerminalManager manager) {
@@ -53,6 +55,7 @@ public class HoloScreen : TerminalBehavior {
 public class Hologram : ScriptableObject {
 	// Public References
 	public GameObject projection;
+	public Sprite screenSprite;
 	public string itemName;
 	public string itemType;
 }

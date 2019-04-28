@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hologram
   projection: {fileID: 2491762842277664604, guid: 03b5ae3e71bdb4030bf9bbf6d7cf0ed1,
     type: 3}
+  screenSprite: {fileID: 21300000, guid: ce9ec909db1ed4749bcb95b6f83d3661, type: 3}
   itemName: '[DATA CORRUPTED]'
   itemType: '[ERR: DATA MISSING]'
