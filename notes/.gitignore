@@ -2,6 +2,3 @@ TeX Working Files
 *.aux
 *.gz
 *.log
-
-# Output Files
-*.pdf
