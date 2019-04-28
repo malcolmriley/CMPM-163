@@ -42,6 +42,7 @@ public class TerminalManager : MonoBehaviour {
 	public Canvas canvas;
 	public MeshRenderer screenMesh;
 	public GameObject bootScreen;
+	public Transform projectorOutput;
 	public TerminalInteraction interaction;
 	public TerminalEvent onStart;
 	public TerminalEvent onBoot;

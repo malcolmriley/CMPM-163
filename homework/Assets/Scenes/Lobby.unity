@@ -11233,6 +11233,7 @@ MonoBehaviour:
   screenMesh: {fileID: 1403942191}
   bootScreen: {fileID: 1560334976553149316, guid: 220051f5fb9b04a51b20c4d58cc003df,
     type: 3}
+  projectorOutput: {fileID: 1061551698}
   interaction:
     m_PersistentCalls:
       m_Calls: []
