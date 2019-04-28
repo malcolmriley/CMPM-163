@@ -106,8 +106,17 @@ public class TerminalManager : MonoBehaviour {
 	}
 
 	public void ReturnToPrevious(bool destroyCurrent) {
+		_currentScreen?.GetComponent<TerminalBehavior>()?.OnScreenExit(this);
 		if (!(_previousScreen is null)) {
-			SetScreen(_previousScreen, destroyCurrent);
+			GameObject newScreen = _previousScreen;
+			newScreen?.GetComponent<TerminalBehavior>()?.OnScreenLoad(this);
+			if (destroyCurrent) {
+				Destroy(_currentScreen);
+			}
+			else {
+				_previousScreen = _currentScreen;
+			}
+			_currentScreen = newScreen;
 		}
 	}
 
@@ -121,8 +130,10 @@ public class TerminalManager : MonoBehaviour {
 		}
 		else {
 			_previousScreen = _currentScreen;
+			_previousScreen.SetActive(false);
 		}
 		_currentScreen = newScreen;
+		_currentScreen.SetActive(true);
 	}
 
 	public Canvas GetCanvas() {
