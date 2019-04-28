@@ -8,6 +8,7 @@ using System.Text;
 public class TextScreen : TerminalBehavior {
 
 	// Public Fields
+	public GameObject nextScreen;
 	public TerminalText textObject;
 	public Text textField;
 
@@ -18,6 +19,8 @@ public class TextScreen : TerminalBehavior {
 	private int _lineProgress = 0;
 	private string[] _lines = null;
 	protected bool _completed = false;
+
+	private float _linger;
 
 	public override void OnScreenLoad(TerminalManager manager) {
 		ApplyProperties(textField);
@@ -50,6 +53,13 @@ public class TextScreen : TerminalBehavior {
 					_completed = true;
 				}
 				textField.text = _builder.ToString();
+			}
+		}
+
+		if (_completed && nextScreen != null) {
+			_linger += Time.deltaTime;
+			if (_linger > textObject.lingerDuration) {
+				manager.SetScreen(nextScreen, true);
 			}
 		}
 	}

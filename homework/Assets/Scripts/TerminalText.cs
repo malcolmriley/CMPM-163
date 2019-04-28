@@ -18,4 +18,5 @@ public class TerminalText : ScriptableObject {
 	public int screenHeight = HEIGHT_DEFAULT;
 	[Range(0.01F, 1.0F)]
 	public float loadSpeed = 0.05F;
+	public float lingerDuration = 1.0F;
 }
