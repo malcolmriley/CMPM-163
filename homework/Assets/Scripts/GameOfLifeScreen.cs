@@ -35,6 +35,7 @@ public class GameOfLifeScreen : TerminalBehavior {
 				_seed = Mathf.Clamp(_seed + 1, 2, 30);
 				break;
 			case TerminalInput.BACK:
+				manager.ReturnToPrevious(true);
 				break;
 			case TerminalInput.SELECT:
 				ResetTextures();
