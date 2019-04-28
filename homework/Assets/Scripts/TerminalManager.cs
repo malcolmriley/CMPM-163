@@ -144,14 +144,16 @@ public class TerminalManager : MonoBehaviour {
 
 	// Internal Methods
 	private void HandleInteractions() {
-		foreach (KeyValuePair<KeyCode, TerminalInput> entry in _inputMap) {
-			if (Input.GetKeyDown(entry.Key)) {
-				AttemptInteraction(entry.Value);
-				return;
+		if (_booted) {
+			foreach (KeyValuePair<KeyCode, TerminalInput> entry in _inputMap) {
+				if (Input.GetKeyDown(entry.Key)) {
+					AttemptInteraction(entry.Value);
+					return;
+				}
 			}
-		}
-		if (Input.anyKeyDown) {
-			AttemptInteraction(TerminalInput.ANY);
+			if (Input.anyKeyDown) {
+				AttemptInteraction(TerminalInput.ANY);
+			}
 		}
 	}
 
