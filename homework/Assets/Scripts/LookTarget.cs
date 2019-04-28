@@ -10,4 +10,5 @@ public class LookTarget : MonoBehaviour {
 	public Transform cameraMoveTarget;
 	public Sprite interactOverride;
 	public UnityEvent onLookAt;
+	public bool isCurrentTarget;
 }

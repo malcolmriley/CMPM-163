@@ -11,6 +11,7 @@ public class LookManager : MonoBehaviour {
 	public SpriteRenderer uiComponent;
 	public Sprite interactSprite;
 	public Sprite exitSprite;
+	public LookTarget CurrentTarget { get; private set; }
 
 	// Public Fields
 	public float maxVerticalLook;
@@ -63,7 +64,10 @@ public class LookManager : MonoBehaviour {
 				if (Input.GetMouseButtonDown(0) && !_isInteracting) {
 					// When Clicked, set move target
 					SetLookTarget(target.cameraMoveTarget);
+					if (CurrentTarget != null) CurrentTarget.isCurrentTarget = false;
 					target.onLookAt?.Invoke();
+					CurrentTarget = target;
+					target.isCurrentTarget = true;
 				}
 				if (_currentTarget.Equals(target.cameraMoveTarget)){
 					// If mouseover and looking

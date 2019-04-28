@@ -43,6 +43,7 @@ public class TerminalManager : MonoBehaviour {
 	public MeshRenderer screenMesh;
 	public GameObject bootScreen;
 	public Transform projectorOutput;
+	public LookTarget target;
 	public TerminalInteraction interaction;
 	public TerminalEvent onStart;
 	public TerminalEvent onBoot;
@@ -144,7 +145,7 @@ public class TerminalManager : MonoBehaviour {
 
 	// Internal Methods
 	private void HandleInteractions() {
-		if (_booted) {
+		if (ShouldInteract()) {
 			foreach (KeyValuePair<KeyCode, TerminalInput> entry in _inputMap) {
 				if (Input.GetKeyDown(entry.Key)) {
 					AttemptInteraction(entry.Value);
@@ -155,6 +156,10 @@ public class TerminalManager : MonoBehaviour {
 				AttemptInteraction(TerminalInput.ANY);
 			}
 		}
+	}
+
+	private bool ShouldInteract() {
+		return _booted && target.isCurrentTarget;
 	}
 
 	private void AttemptInteraction(TerminalInput input) {
