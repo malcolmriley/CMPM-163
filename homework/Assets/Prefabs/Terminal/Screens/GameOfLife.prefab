@@ -439,7 +439,7 @@ MonoBehaviour:
   statsText: {fileID: 9050385977934737720}
   gameRegion: {fileID: 9050385978868930918}
   automata: {fileID: 2100000, guid: 79a424a2daf3d4baebf72a5399ead618, type: 2}
-  speed: 0.02
+  thinkSound: {fileID: 8300000, guid: 0d34b7173db2e4acc9a8836f6afdb847, type: 3}
 --- !u!1 &9050385978761211694
 GameObject:
   m_ObjectHideFlags: 0

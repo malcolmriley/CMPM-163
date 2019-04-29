@@ -10,6 +10,7 @@ public class GameOfLifeScreen : TerminalBehavior {
 	public Text statsText;
 	public Image gameRegion;
 	public Material automata;
+	public AudioClip thinkSound;
 
 	// Internal References
 	private Texture2D _first;
@@ -38,6 +39,7 @@ public class GameOfLifeScreen : TerminalBehavior {
 				manager.ReturnToPrevious(true);
 				break;
 			case TerminalInput.SELECT:
+				manager.source.PlayOneShot(thinkSound);
 				ResetTextures();
 				break;
 			case TerminalInput.ANY:
@@ -50,6 +52,7 @@ public class GameOfLifeScreen : TerminalBehavior {
 	}
 
 	public override void OnScreenLoad(TerminalManager manager) {
+		manager.source.PlayOneShot(thinkSound);
 		ResetTextures();
 	}
 
