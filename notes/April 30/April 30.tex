@@ -5,8 +5,17 @@
 \begin{document}
 \maketitle
 
-\begin{topic}{TITLE}
-	\item 
+\begin{topic}{Environment Mapping}
+	\item Also known as \term{Cubemapping}
+	\item Basically, this is the practice of shading the interior of a cube with six seamless textures
+	\item Used for creating skyboxes. Shaders can do neat things with skyboxes, such as reflecting them.
+	\item Skyboxes are typically implemented as being \quotes{infinitely far away}, such that the character's motion has no impact on the relative positioning of the skybox
+	\item The typical UV mapping for a \term{cubemap} is spherical, this allows a cube to be used in place of a sphere
+	\item Texture coordinates of the \term{cubemap} are three dimensional, not two dimensional; however these coordinates map onto the flattened cubic plane
+	\item In Unity, the \code{Skybox Material} field may be set via the \code{Lighting} settings. This is how special shaders are applied to the skybox.
+	\item Cg uses \code{samplerCUBE()} to sample from \term{cubemap} (In contrast with \code{sampler2D()}
+	\item Cg/HLSL have built-in \code{reflect()} and \code{refract()} functions to return the ray of reflection/refraction of a vector based on the mesh surface normal. \code{refract()} requires an additional \code{float} interpreted as an angle of refraction.
+	\item In real-world refractive media, different spectra have different ratios of refraction. This effect is called \term{Chromatic Dispersion} and is the essential characteristic of the function of prisms. This can be accomplished in shaders by doing different \code{texCUBE} lookups per chroma. This effect is typically quite subtle in real-world materials, so use sparingly
 \end{topic}
 
 \end{document}
