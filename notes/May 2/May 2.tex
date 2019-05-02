@@ -5,8 +5,28 @@
 \begin{document}
 \maketitle
 
-\begin{topic}{TITLE}
-	\item 
+\begin{topic}{Quiz Review}
+	\item Quizzes are not worth 20\% of the grade, but 10\% - the syllabus will be updated accordingly
+	\item Quiz Answers are below:
+	\begin{enumerate}
+		\item Textures are used for: Heightmaps, Normal Maps, Noise Textures, storage space for texel data, and also just as textures!
+		\item \term{Attribute Data} is data that is specific to each vertex or fragment (but not necessarily unique to that vertex or fragment), whereas \term{Uniform Data} is data that is explicitly non-unique to each vertex or fragment. These keywords are optional in Cg/HLSL
+		\item The term \term{Programmable Render Pipeline} refers to the fact that part of the functionality of the rendering process is mutable through a software program. The \term{Vertex Shader} is a program that handles transformations per vertex, and the \term{Fragment Shader} is a program that handles transformations per fragment (roughly meaning, per-pixel)
+		\item The \term{Box Blur} effect can be accomplished by examining the eight neighboring texel values and averaging the current fragment value with them.
+		\item (Smiley-Face drawing not covered in class)
+		\item Diffuse contribution: $\hat{L} \cdot \hat{N} = \sqrt{2} \approx 0.707$, where $L$ is the vector from the vertex to the light source, $N$ is the surface normal, and the hat implies that the vector has been normalized.
+		\item This question was a gimme, no wrong answers
+	\end{enumerate}
+\end{topic}
+
+\begin{topic}{Particle Systems}
+	\item Instead of rendering a mesh of an object, there will be a group of \term{Particle} meshes that are all rendered using the same shader.
+	\item Offline systems typically render many times more particles than real-time applications - for the simple fact that they don't need to be rendered in real time. The computationally-expensive processing is performed ahead of time, then rendered.
+	\item In Unity, it is possible to attach particle systems to each-other; particles that spawn other particles on death, or particles that have particle trails, etc.
+	\item Generally, a particle is rendered as a \term{Billboard}: Two triangles forming a quad that has been textured. These \term{Billboard} meshes are instructed to face the camera; this is the distinguishing characteristic of a \term{Billboard} particle that is not necessarily true of other types.
+	\term One of the primary optimizations that enable particles is the fact that the resources used to render, draw, and maintain them are preallocated. Individual particle instances are also typically pooled.
+	\item Unity permits the attachment of shaders to particles in the same way as it attaches shaders to ordinary meshes: through materials! Furthermore, the particle and trail may use separate materials
+	\item In Unity, particle systems may also have sub-emitters triggered by particle lifetime events
 \end{topic}
 
 \end{document}
