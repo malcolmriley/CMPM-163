@@ -53,7 +53,37 @@ ModelImporter:
     13700002: Engine
     13700004: Front Wheel
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete
+    second: {fileID: 2100000, guid: 12c5b914b6a844cce834e8498f6c4d25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Copper
+    second: {fileID: 2100000, guid: 77d80015d0d594ecf801f89a0a6f1579, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark Metal
+    second: {fileID: 2100000, guid: b6b8aeb2cd0e6408781f52ec9dffaca8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: 550370e7552ca4c8282e79af21b8be74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light Metal
+    second: {fileID: 2100000, guid: f03ac8a8517194dd19c628df582d9ca2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paint
+    second: {fileID: 2100000, guid: ba3fdf712dd314c15ac5f37f68ce72b0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
