@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+\input{../_PREAMBLE}
+\preparetitle
+
+\begin{document}
+\maketitle
+
+\begin{topic}{Homework Tips}
+	\item Even if a build is provided it is useful to provide a download to the raw project - sometimes the builds don't work on specific platforms!
+	\item Try to do a WebGL build \textit{wherever possible} - it's quicker and easier for the TAs
+\end{topic}
+
+\begin{topic}{Visual Effect Case Studies}
+	\item \textbf{River VFX:}
+	\begin{itemize}
+		\item Potentially adjusting the UV of the texture based on angle of surface normals, in order to provide the illusion of the water accelerating over the fall
+		\item Water surface has two textures with different offset-over-time speeds
+	\end{itemize}
+	\item \textbf{Toon Shaded Pond:}
+	\begin{itemize}
+		\item Standard toon shader
+		\item Lighting appears to be baked into the texture
+		\item Some easing function on the "bob" effect - could be implemented as vertex displacement shader but more likely implemented CPU-side
+		\item Foam around the edges potentially the result of some difference between noise textures
+	\end{itemize}
+	\item \textbf{Unlit Waterfall:} 
+	\begin{itemize}
+		\item Noise around edges of water
+		\item Particles at impact point of water column
+		\item Some kind of toon effect on solid objects
+		\item Possibly stretched Perlin noise difference function on water column
+	\end{itemize}
+	\item Check out: Harry Halisavakis - Technically Art
+\end{topic}
+
+\begin{topic}{Unity Shader Graph}
+	\item It's a new method for creating shaders that doesn't require writing code
+	\item Nodes-and-strings graph-based interface for controlling and creating new shaders
+	\item Connect the inputs and outputs of a library of functional nodes to produce interesting results
+	\item It may still be useful to understand shader programming internals, to understand how individual nodes will function
+\end{topic}
+
+\end{document}
