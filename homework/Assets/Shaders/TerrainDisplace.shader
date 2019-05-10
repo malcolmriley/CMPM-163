@@ -2,10 +2,56 @@
 	Properties {
 		_MainTex ("Texture", 2D) = "white" {}
 		_Height ("Height", Float) = 1.0
+		_Outline ("Outline", Color) = (0.0, 0.0, 0.0, 0.0)
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 		LOD 100
+		
+		Pass {
+			Cull Front
+			CGPROGRAM
+
+			#pragma vertex vert
+			#pragma fragment frag
+			#pragma multi_compile_fog
+
+			#include "UnityCG.cginc"
+
+			struct VertexInput {
+				float4 vertex : POSITION;
+				float2 uv : TEXCOORD0;
+			};
+
+			struct VertexOutput {
+				float2 uv : TEXCOORD0;
+				UNITY_FOG_COORDS(1)
+				float4 vertex : SV_POSITION;
+			};
+
+			sampler2D _MainTex;
+			float4 _MainTex_ST;
+			float _Height;
+			fixed4 _Outline;
+
+			VertexOutput vert (VertexInput input) {
+				VertexOutput output;
+				
+				float4 displaced = input.vertex;
+				displaced.z += tex2Dlod(_MainTex, float4(input.uv, 0, 0)).r * _Height + 0.01;
+				output.vertex = UnityObjectToClipPos(displaced);
+				
+				output.uv = TRANSFORM_TEX(input.uv, _MainTex);
+				UNITY_TRANSFER_FOG(output, output.vertex);
+				return output;
+			}
+
+			fixed4 frag (VertexOutput input) : SV_Target {
+				return _Outline;
+			}
+
+			ENDCG
+		}
 
 		Pass {
 			CGPROGRAM
