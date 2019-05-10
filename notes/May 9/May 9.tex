@@ -1,0 +1,21 @@
+\documentclass[11pt]{article}
+\input{../_PREAMBLE}
+\preparetitle
+
+\begin{document}
+\maketitle
+
+\begin{topic}{Guest Speaker: Javier Villegas}
+	\item There is an approach to audio processing called \term{analysis and synthesis} - Using the parameterized results of the analysis of of a signal to synthesize a result from another.
+	\item This approach can also be applied to video processing
+	\item Fundamentally, this approach takes advantage of the human brain's penchant for detecting patterns
+	\item There also exists the problem of \term{temporal coherence} - There needs to be some interpolation or smoothing between two different frames in a real-time video, due to signal noise or other video artifacts
+	\item Solving the \term{temporal coherence} problem is often a question of weighing sub-optimal matching - how much informational decoherence from the original source is acceptable
+	\item Another solution is a \term{gradient-based approach}, an image is fed into a surface gradient evaluator, which is then interpreted as a vector field. This vector field can be smoothed and interpolated to achieve the desired results
+	\item Furthermore, a \term{template-matching} algorithm can be used to find a best-match from a map of known vectors, and render the value mapped to that key bucket
+	\item Global or local histogram equalization of the luminance of the image can be used to identify regions of interest
+	\item Derivatives of the movement delta of individual points-of-interest can also be used for interesting effects
+	\item The center of mass of a field of pixels can be tracked and used as a data point for influencing other effects
+\end{topic}
+
+\end{document}
