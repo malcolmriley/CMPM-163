@@ -486,6 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 1832509642}
+  armorMaterial: {fileID: 2100000, guid: ba3fdf712dd314c15ac5f37f68ce72b0, type: 2}
 --- !u!1 &1832509639 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100026, guid: 79c5f46ef7d1947748deb152e0c0821b,
