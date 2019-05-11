@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Animation))]
 public class CycleController : MonoBehaviour {
 
+	// Public References
+	public ParticleSystem particles;
+
 	// Private References
 	private Animator _animator;
 	private Animation _animation;
@@ -17,6 +20,8 @@ public class CycleController : MonoBehaviour {
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			_animation.Play();
+			particles.Stop();
+			particles.Play();
 		}
 	}
 }
