@@ -31,6 +31,7 @@ public class CycleController : MonoBehaviour {
 			// Set Armor Color
 			armorMaterial.color = newColor;
 
+			// Reset Particle System
 			particles.Stop();
 			particles.Play();
 		}
