@@ -15,6 +15,8 @@ public class CycleController : MonoBehaviour {
 	}
 
 	void Update() {
-		
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			_animation.Play();
+		}
 	}
 }
