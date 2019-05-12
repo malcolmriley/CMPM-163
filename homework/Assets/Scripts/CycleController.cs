@@ -8,6 +8,7 @@ public class CycleController : MonoBehaviour {
 	// Public References
 	public ParticleSystem particles;
 	public Material armorMaterial;
+	public Material overlayMaterial;
 
 	// Private References
 	private Animator _animator;
@@ -37,6 +38,7 @@ public class CycleController : MonoBehaviour {
 
 		// Set Armor Color
 		armorMaterial.color = newColor;
+		overlayMaterial.color = newColor;
 
 		// Reset Particle System
 		particles.Stop();
