@@ -1,7 +1,6 @@
 ﻿Shader "Custom/GlowOverlay" {
 	Properties {
-		_OutlineColor("Outline Color", Color) = (1.0, 1.0, 1.0, 1.0)
-		_XrayColor ("X-Ray Color", Color) = (1.0, 1.0, 1.0, 1.0)
+		_Color ("Color", Color) = (1.0, 1.0, 1.0, 1.0)
 		_Intensity ("Effect Intensity", Range(0.0, 2.0)) = 0.5
 	}
 	SubShader {
@@ -29,8 +28,7 @@
 				float3 view : DIRECTION;
 			};
 			
-			fixed4 _XrayColor;
-			fixed4 _OutlineColor;
+			fixed4 _Color;
 			fixed _Intensity;
 
 			VertexOutput vert (VertexInput input) {
@@ -43,7 +41,7 @@
 
 			fixed4 frag (VertexOutput input) : SV_Target {
 				float4 incidence = 1 - dot(input.normal, input.view);
-				return _XrayColor * incidence * _Intensity;
+				return _Color * incidence * _Intensity;
 			}
 
 			ENDCG
