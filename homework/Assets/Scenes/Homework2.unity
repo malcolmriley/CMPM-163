@@ -307,7 +307,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1c04a64c8ed754f018312e6fd25c7a5a, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2300000, guid: 9890e116d4e2c4815878abd2a27bd3f7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9890e116d4e2c4815878abd2a27bd3f7, type: 3}
 --- !u!4 &469859959 stripped
 Transform:
@@ -493,6 +494,61 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1234336345}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1360315577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 9890e116d4e2c4815878abd2a27bd3f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 469859958}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &1360315578
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360315577}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 1c04a64c8ed754f018312e6fd25c7a5a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300000, guid: 9890e116d4e2c4815878abd2a27bd3f7, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 5, y: 5, z: 1}
+  m_DirtyAABB: 0
 --- !u!1 &1832509639 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100026, guid: 79c5f46ef7d1947748deb152e0c0821b,
