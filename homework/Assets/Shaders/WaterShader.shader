@@ -6,10 +6,12 @@
 		_Level ("Level", Range(0.0, 1.0)) = 0.0
 	}
 	SubShader {
-		Tags { "RenderType"="Transparent" }
+		Tags { "Queue"="Transparent" "RenderType"="Transparent" }
 		LOD 200
 		
 		Pass {
+			ZWrite Off
+        	Blend SrcAlpha OneMinusSrcAlpha
 			CGPROGRAM
 
 			#pragma vertex vert
@@ -55,7 +57,9 @@
 				}
 				fixed4 reflectColor = texCUBE(_Skybox, reflectVector);
 				
-				return (texColor + reflectColor) * _Color;
+				fixed4 finalColor = (texColor + reflectColor) * _Color;
+				finalColor.a = _Color.a;
+				return finalColor;
 			}
 
 			ENDCG
