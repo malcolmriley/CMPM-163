@@ -2,7 +2,7 @@
 	Properties {
 		_OutlineColor("Outline Color", Color) = (1.0, 1.0, 1.0, 1.0)
 		_XrayColor ("X-Ray Color", Color) = (1.0, 1.0, 1.0, 1.0)
-		_Intensity ("Effect Intensity", Range(0.0, 1.0)) = 0.5
+		_Intensity ("Effect Intensity", Range(0.0, 2.0)) = 0.5
 	}
 	SubShader {
 		Tags { "Queue"="Transparent" "RenderType"="Transparent" }
@@ -26,20 +26,24 @@
 			struct VertexOutput {
 				float4 vertex : SV_POSITION;
 				float3 normal : NORMAL;
+				float3 view : DIRECTION;
 			};
 			
 			fixed4 _XrayColor;
 			fixed4 _OutlineColor;
+			fixed _Intensity;
 
 			VertexOutput vert (VertexInput input) {
 				VertexOutput output;
 				output.vertex = UnityObjectToClipPos(input.vertex);
-				output.normal = input.normal;
+				output.normal = UnityObjectToWorldNormal(input.normal);
+				output.view = normalize(_WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, input.vertex).xyz);
 				return output;
 			}
 
 			fixed4 frag (VertexOutput input) : SV_Target {
-				return _XrayColor;
+				float4 incidence = 1 - dot(input.normal, input.view);
+				return _XrayColor * incidence * _Intensity;
 			}
 
 			ENDCG
