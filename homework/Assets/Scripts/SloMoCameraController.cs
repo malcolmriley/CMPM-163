@@ -38,15 +38,11 @@ public class SloMoCameraController : MonoBehaviour {
 		bool keyPressed = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
 		if (angleGood && keyPressed) {
 			desiredTarget = Quaternion.LookRotation(toTarget, transform.up);
-			transform.LookAt(lookTarget);
-			UIText.enabled = false;
 			_lerp = Mathf.Clamp01(_lerp + zoomRate * Time.deltaTime);
 		}
 
 		else {
 			// Reset Variables
-			UIText.enabled = true;
-			Time.timeScale = 1.0F;
 			_lerp = Mathf.Clamp01(_lerp - zoomRate * Time.deltaTime);
 
 			// Follow Mouse View
@@ -60,7 +56,9 @@ public class SloMoCameraController : MonoBehaviour {
 
 		Time.timeScale = Mathf.Lerp(0.3F, 1.0F, 1 - _lerp);
 		SetFOV(Mathf.Lerp(zoomFOV, _defaultFOV, 1 - _lerp));
-		transform.localRotation = Quaternion.Lerp(transform.rotation, desiredTarget, 1 - _lerp);
+		UIText.color = new Color(UIText.color.r, UIText.color.g, UIText.color.b, _lerp);
+		float lookLerp = (angleGood && keyPressed) ? _lerp : 1 - _lerp;
+		transform.localRotation = Quaternion.Lerp(transform.localRotation, desiredTarget, lookLerp);
 	}
 
 	private void SetFOV(float fieldOfView) {
