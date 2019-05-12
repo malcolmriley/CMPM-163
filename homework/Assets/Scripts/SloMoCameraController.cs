@@ -56,7 +56,7 @@ public class SloMoCameraController : MonoBehaviour {
 
 		Time.timeScale = Mathf.Lerp(0.3F, 1.0F, 1 - _lerp);
 		SetFOV(Mathf.Lerp(zoomFOV, _defaultFOV, 1 - _lerp));
-		UIText.color = new Color(UIText.color.r, UIText.color.g, UIText.color.b, _lerp);
+		UIText.color = new Color(UIText.color.r, UIText.color.g, UIText.color.b, 1 - _lerp);
 		float lookLerp = (angleGood && keyPressed) ? _lerp : 1 - _lerp;
 		transform.localRotation = Quaternion.Lerp(transform.localRotation, desiredTarget, lookLerp);
 	}
