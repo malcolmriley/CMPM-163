@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.Audio;
 
 public class SloMoCameraController : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class SloMoCameraController : MonoBehaviour {
 	public float maxHorizontalLook;
 	public List<Camera> controlledCameras;
 	public Transform lookTarget;
+	public AudioSource controlledAudio;
+	public AudioLowPassFilter controlledFilter;
 	[Range(0.01F, 20.0F)]
 	public float zoomRate = 0.5F;
 	public float zoomFOV = 40.0F;
@@ -59,6 +62,8 @@ public class SloMoCameraController : MonoBehaviour {
 		UIText.color = new Color(UIText.color.r, UIText.color.g, UIText.color.b, 1 - _lerp);
 		float lookLerp = (angleGood && keyPressed) ? _lerp : 1 - _lerp;
 		transform.localRotation = Quaternion.Lerp(transform.localRotation, desiredTarget, lookLerp);
+		controlledAudio.pitch = Mathf.Lerp(0.8F, 1.0F, 1 - _lerp);
+		controlledFilter.cutoffFrequency = Mathf.Lerp(1000.0F, 22000.0F, 1 - _lerp);
 	}
 
 	private void SetFOV(float fieldOfView) {
