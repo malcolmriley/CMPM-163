@@ -154,11 +154,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 215734795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 371cc2056498a44cd90a472d92df8f1f, type: 3}
+  m_Script: {fileID: 11500000, guid: ac3e6332e325e4ee3923e74daa4a30e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIText: {fileID: 878090460}
   maxVerticalLook: 90
   maxHorizontalLook: 60
+  controlledCameras:
+  - {fileID: 1862365795}
+  - {fileID: 1354347184}
+  lookTarget: {fileID: 1234336349}
+  zoomFOV: 40
 --- !u!1 &371527877
 GameObject:
   m_ObjectHideFlags: 0
