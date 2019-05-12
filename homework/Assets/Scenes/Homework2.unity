@@ -164,6 +164,7 @@ MonoBehaviour:
   - {fileID: 1862365795}
   - {fileID: 1354347184}
   lookTarget: {fileID: 1234336349}
+  zoomRate: 3
   zoomFOV: 40
 --- !u!1 &371527877
 GameObject:
