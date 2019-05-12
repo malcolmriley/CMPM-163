@@ -1343,6 +1343,7 @@ MonoBehaviour:
   particles: {fileID: 2021517135}
   armorMaterial: {fileID: 2100000, guid: ba3fdf712dd314c15ac5f37f68ce72b0, type: 2}
   overlayMaterial: {fileID: 2100000, guid: 556df450b84ff41bca32d9e147610279, type: 2}
+  spawnRate: 7
 --- !u!4 &1234336349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400026, guid: 79c5f46ef7d1947748deb152e0c0821b,

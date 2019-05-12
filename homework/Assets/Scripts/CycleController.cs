@@ -9,21 +9,23 @@ public class CycleController : MonoBehaviour {
 	public ParticleSystem particles;
 	public Material armorMaterial;
 	public Material overlayMaterial;
+	public float spawnRate = 10.0F;
 
 	// Private References
-	private Animator _animator;
 	private Animation _animation;
+	private float _progress;
 
 	void Start() {
-		_animator = GetComponent<Animator>();
 		_animation = GetComponent<Animation>();
 		UpdateColors();
 	}
 
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.Space) && !_animation.isPlaying) {
+		_progress += Time.deltaTime * Random.Range(0.7F, 1.2F);
+		if (ShouldSpawn()) {
 			_animation.Play();
 			UpdateColors();
+			_progress = 0.0F;
 		}
 	}
 
@@ -47,5 +49,10 @@ public class CycleController : MonoBehaviour {
 
 	private Color GetColor() {
 		return Random.ColorHSV(0.0F, 1.0F, 0.85F, 1.0F, 0.4F, 0.8F);
+	}
+
+	private bool ShouldSpawn() {
+		// return (Input.GetKeyDown(KeyCode.Space) && !_animation.isPlaying);
+		return (_progress > spawnRate);
 	}
 }
