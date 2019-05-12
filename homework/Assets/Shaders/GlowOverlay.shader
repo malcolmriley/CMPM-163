@@ -6,8 +6,15 @@
 	SubShader {
 		Tags { "Queue"="Transparent" "RenderType"="Transparent" }
 		
+		ZTest Off
 		ZWrite Off
 		Blend SrcAlpha OneMinusSrcAlpha
+		
+		Stencil {
+			Ref 0
+			Comp NotEqual
+			Pass Keep
+		}
 
 		Pass {
 			CGPROGRAM

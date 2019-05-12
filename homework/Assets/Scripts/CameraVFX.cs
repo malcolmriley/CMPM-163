@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
+[ExecuteInEditMode, ImageEffectAllowedInSceneView]
 public class CameraVFX : MonoBehaviour {
 
 	public Material vfxMaterial;
