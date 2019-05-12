@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour {
 
 	public float maxVerticalLook;
