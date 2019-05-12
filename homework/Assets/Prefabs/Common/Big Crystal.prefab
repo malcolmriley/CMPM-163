@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6018136304966538550}
   - component: {fileID: 3184876330915542037}
   - component: {fileID: 8363428415411185538}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Falling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4708,7 +4708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7804982757695456861}
   - component: {fileID: 7804982757695456860}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Big Crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4757,7 +4757,7 @@ GameObject:
   - component: {fileID: 7804982757870643006}
   - component: {fileID: 7804982757870643008}
   - component: {fileID: 7804982757870643009}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Tendrils
   m_TagString: Untagged
   m_Icon: {fileID: 0}
