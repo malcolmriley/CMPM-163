@@ -48,16 +48,23 @@
 			}
 
 			fixed4 frag (VertexOutput input) : SV_Target {
+				// Reflection Color
 				float3 reflectVector = reflect(normalize(input.worldVertex - _WorldSpaceCameraPos), input.worldNormal);
+				fixed4 reflectColor = texCUBE(_Skybox, reflectVector);
 				
+				// Albedo Color
 				fixed4 texColor = tex2D(_Height, input.uv);
 				float level = _Level + _SinTime.w * 0.007;
 				if (texColor.r > level) {
 					texColor = fixed4(0.8, 0.8, 0.8, 0.8);
 				}
-				fixed4 reflectColor = texCUBE(_Skybox, reflectVector);
 				
-				fixed4 finalColor = (texColor + reflectColor) * _Color;
+				// Refraction Color
+				float3 refractAngle = 0.5 + 0.3 * sin(_Time.w);
+				float3 refractVector = refract(input.worldVertex - _WorldSpaceCameraPos, input.worldNormal, refractAngle);
+				float4 refractColor = texCUBE(_Skybox, refractVector) * 0.2;
+				
+				fixed4 finalColor = (texColor + reflectColor + refractColor) * _Color;
 				finalColor.a = _Color.a;
 				return finalColor;
 			}
