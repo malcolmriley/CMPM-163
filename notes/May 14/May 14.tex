@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+\input{../_PREAMBLE}
+\preparetitle
+
+\begin{document}
+\maketitle
+
+\begin{topic}{Audio in Unity}
+	\item Audio in Unity is accomplished by the following two object components: \code{Audio Source} and \code{Audio Listener}.
+	\item Typically, the \code{Audio Listener} is attached to the main camera, and in the default scene it will be set up this way.
+	\item Importing audio assets works the same way as importing other assets in Unity - simple drag-n-drop.
+	\item Implementing \code{GameObject} response to audio is accomplished via scripts
+	\item The general idea is to populate an array of floating-point values with data from the audio spectrum. This data is then interpreted to the desired effect.
+	\item The interpretation of an audio waveform is based on the principle of the \term{Fourier Transform}.
+	\item Consider that an audio wave may be represented by the \term{amplitude} of a function over the domain of time.
+	\item The \term{Fourier Transform} interprets the amplitude components of the waveform function at different \quotes{frequencies}; the number of discrete frequencies being sampled is the \quotes{size} of the transform. These samples are typically over a very short duration, usually on the order of milliseconds
+	\item The \term{Frequency Resolution} is given by the formula $\frac{R}{S}$ where $R$ is the sample rate in \textsc{Hz}, and $S$ is the \quotes{size} of the \term{Fast Fourier Transform}
+	\item The maximum measurable frequency, called the \term{Nyquist Limit}, is equal to one half of the \term{Sample Rate}.
+	\item Fortunately, Unity has built-in methods for acquiring \term{Fast Fourier Transform} data from an \code{Audio Source}. On an \code{AudioSource} component, call the \code{GetSpectrumData()} method! It will populate a \code{float} array with the desired data.
+	\item When performing audio analysis, there is always a tradeoff. The larger the \term{Fast Fourier Transform} size, the higher the frequency resolution, but computational expense increases. Furthermore, resolution scales over the two domains independently: the frequency domain, and the time domain.
+\end{topic}
+
+\end{document}
