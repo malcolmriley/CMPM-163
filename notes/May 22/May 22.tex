@@ -1,0 +1,33 @@
+\documentclass[11pt]{article}
+\input{../_PREAMBLE}
+\usepackage{hyperref}
+\preparetitle
+
+\begin{document}
+\maketitle
+
+\begin{topic}{Volumetric Effects and Models}
+	\item A \term{Model} is a representation, abstraction, or process of a given system that may or may not employ simplification, generalization, depending on the intended accuracy of the model.
+	\item \term{Models} are useful because nature is mostly chaotic, and these constructs permit us to understand, find or create order, build a hierarchy of understanding, and eventually uncover a more universal pattern.
+	\item \term{Volumetric Media} is a term that refers to physical volumes that have effects on transiting light.
+	\item In ordinary life, the effects of \term{Volumetric Media} are not always apparent as many physical objects appear opaque or non-translucent.
+	\item Density is typically the greatest effector when it comes to calculating volumetric effects.
+	\item It is possible to distinguish between \term{Physically Correct} models and \term{Empirically Correct} models. The former is evaluated based on real principles, whereas the latter is merely intended to mimic the phenomena as they are observed.
+	\item The amount of light passing through a fragment can be found by taking the integral of the product reflectance with the incoming light for all directions.
+	\item The fundamental problem of light transport is that light transport has a fractal nature: light is reflected, refracted, and re-emitted by surfaces, so calculating the light hitting a surface from all direction also entails calculating previous iterations of the same equation.
+	\item The concept of \term{Radiative Transfer} is an abstract model representing the aggregate transfer of light of the previous problem
+	\item There are two principled methods of solving the \term{Radiative Transfer} problem: \term{Stochastic/Probabilistic} or \term{Deterministic}.
+	\item Within the \term{Stochastic} method is the approach of \term{Photon Mapping} - individual \quotes{photon} interactions are modeled and stored as they occur, whereupon a raymarch is employed to determine which interactions would be visible to the viewer
+	\item Within the \term{Deterministic} approach, volumes are broken into cells and the individual cells perform light interactions upon each other.
+	\item \term{Light Scattering} is the gradual loss of illumination coherence throughout a substance
+\end{topic}
+
+\begin{topic}{Methodology of Volumetric Effects Rendering}
+	\item A typical approach to soft volumetrics is to keep a 3D texture representing discretized densities of an object.
+	\item Instead of solving the global transport problem, it is possible to employ \term{Principal Ordinate Propagation} -- effectively, perform an iterated series of discretized ordinate solutions per light source, then sum the results.
+	\item For a scene with many lights, they may be separated into \term{Distant Lights}, \term{Point Lights}, and \term{Virtual Point Lights}. Each will generate a light propagation lattice for the final calculation
+	\item \term{Screen-Space Scattering} is an optimization that is applicable to sparse environments; it is an approximation that uses only the image-space depth to apply a volumetric media calculation to the entire screen space. Basically it assumes that there is a uniform volumetric media that encompasses the viewer and entire scene.
+	\item Check out Inigo Quilez: \url{iquilezles.org}
+\end{topic}
+
+\end{document}
