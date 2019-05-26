@@ -15315,11 +15315,10 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  light: {fileID: 824713869}
-  smokeSystem: {fileID: 0}
-  glowSystem: {fileID: 0}
-  electricSystem: {fileID: 0}
-  sigilSystem: {fileID: 0}
+  vfxLight: {fileID: 824713869}
+  mistSystem: {fileID: 1601260431}
+  glowSystem: {fileID: 648841848}
+  sparkleSystem: {fileID: 5442367}
 --- !u!114 &1677932830
 MonoBehaviour:
   m_ObjectHideFlags: 0
