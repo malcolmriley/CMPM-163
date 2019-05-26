@@ -4,10 +4,7 @@
 		_Intensity ("Effect Intensity", Range(0.0, 2.0)) = 0.5
 	}
 	SubShader {
-		Tags { "Queue"="Transparent" "RenderType"="Transparent" }
-		
-		ZTest Off
-		Blend SrcAlpha OneMinusSrcAlpha
+		Tags { "RenderType"="Opaque" }
 
 		Pass {
 			CGPROGRAM
