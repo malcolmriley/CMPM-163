@@ -13,13 +13,13 @@ public class CameraDrift : MonoBehaviour {
 	private Quaternion _startRotation;
 
 	void Start() {
-		_startRotation = transform.rotation;
+		_startRotation = transform.localRotation;
 	}
 
 	void Update() {
 		float pitch = GetXNoiseModulation(maxPitch);
 		float yaw = GetYNoiseModulation(maxYaw);
-		transform.rotation = _startRotation * Quaternion.Euler(0.0F, pitch, yaw);
+		transform.localRotation = _startRotation * Quaternion.Euler(0.0F, pitch, yaw);
 	}
 
 	// Internal Methods
