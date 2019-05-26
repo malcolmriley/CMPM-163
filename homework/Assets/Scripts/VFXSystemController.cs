@@ -6,6 +6,7 @@ public class VFXSystemController : MonoBehaviour {
 
 	// Public Fields
 	public FFTAnalyzer analyzer;
+	public Gradient lightColorGrade;
 
 	[Header("Internal Use Only")]
 	public Light light;
