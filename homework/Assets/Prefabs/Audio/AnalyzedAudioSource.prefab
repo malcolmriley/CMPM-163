@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2105101075157919463}
   - component: {fileID: 2105101075157919456}
-  - component: {fileID: 2105101075157919458}
   - component: {fileID: 2105101075157919457}
   m_Layer: 0
   m_Name: AnalyzedAudioSource
@@ -129,14 +128,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!81 &2105101075157919458
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105101075157919462}
-  m_Enabled: 1
 --- !u!114 &2105101075157919457
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(AudioListener))]
 public class FFTAnalyzer : MonoBehaviour {
 
 	// Public Fields
@@ -9,10 +8,8 @@ public class FFTAnalyzer : MonoBehaviour {
 	public float[] Spectrum { get; private set; }
 
 	// Internal Methods
-	private AudioListener _listener;
 
 	public void Start() {
-		_listener = GetComponent<AudioListener>();
 		Spectrum = new float[Mathf.ClosestPowerOfTwo(sampleSize)];
 	}
 
