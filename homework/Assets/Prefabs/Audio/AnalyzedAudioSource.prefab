@@ -141,4 +141,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windowType: 3
-  sampleSize: 64
+  sampleSize: 128
