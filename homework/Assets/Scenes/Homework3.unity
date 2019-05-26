@@ -10430,7 +10430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -190}
+  m_AnchoredPosition: {x: 0.000061035, y: -271.5}
   m_SizeDelta: {x: 1024, y: 225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1242229885
@@ -10469,7 +10469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   analyzer: {fileID: 1040944750}
-  heightRange: {x: 10, y: 100}
+  heightRange: {x: 10, y: 200}
   normalizer:
     serializedVersion: 2
     m_Curve:
@@ -15456,6 +15456,30 @@ MonoBehaviour:
   bassRange: {x: 0, y: 0.09}
   midRange: {x: 0.25, y: 0.66}
   trebleRange: {x: 0.6, y: 1}
+  normalizer:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 5
+      inSlope: -1.5695509
+      outSlope: -1.5695509
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 50
+      inSlope: -0.008152011
+      outSlope: -0.008152011
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   lightColorGrade:
     serializedVersion: 2
     key0: {r: 0.3584906, g: 0, b: 0, a: 1}

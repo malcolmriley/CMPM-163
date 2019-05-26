@@ -13,6 +13,7 @@ public class VFXSystemController : MonoBehaviour {
 	public Vector2 trebleRange;
 
 	[Header("Output Modulation")]
+	public AnimationCurve normalizer;
 	public Gradient lightColorGrade;
 
 	[Header("Internal Use Only")]
@@ -53,8 +54,9 @@ public class VFXSystemController : MonoBehaviour {
 
 		float average = 0.0F;
 		for (int index = min; index <= max; index += 1) {
-			average += array[index];
+			float normalize = normalizer.Evaluate((float)index / (float)array.Length);
+			average += array[index] * normalize;
 		}
-		return (average) / (max - min + 1);
+		return Mathf.Clamp01(average / (max - min + 1));
 	}
 }
