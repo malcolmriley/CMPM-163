@@ -6295,7 +6295,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -15482,9 +15482,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   lightColorGrade:
     serializedVersion: 2
-    key0: {r: 0.3584906, g: 0, b: 0, a: 1}
+    key0: {r: 0.3584906, g: 0, b: 0, a: 0}
     key1: {r: 1, g: 0, b: 0, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
+    key2: {r: 0, g: 0, b: 0, a: 1}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
@@ -15499,8 +15499,8 @@ MonoBehaviour:
     ctime6: 0
     ctime7: 0
     atime0: 0
-    atime1: 65535
-    atime2: 0
+    atime1: 9638
+    atime2: 65535
     atime3: 0
     atime4: 0
     atime5: 0
@@ -15508,7 +15508,7 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
+    m_NumAlphaKeys: 3
   vfxLight: {fileID: 824713869}
   sigilSprite: {fileID: 1762195258}
   mistSystem: {fileID: 1601260431}
@@ -16457,7 +16457,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2

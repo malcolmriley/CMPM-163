@@ -15,6 +15,7 @@ public class VFXSystemController : MonoBehaviour {
 	[Header("Output Modulation")]
 	public AnimationCurve normalizer;
 	public Gradient lightColorGrade;
+	public int burstCount = 50;
 
 	[Header("Internal Use Only")]
 	public Light vfxLight;
@@ -29,7 +30,20 @@ public class VFXSystemController : MonoBehaviour {
 	}
 
 	void Update() {
-		sigilSprite.color = lightColorGrade.Evaluate(GetTreble());
+		// Precalculate values
+		float bass = GetBass();
+		float midrange = GetMidrange();
+		float treble = GetTreble();
+
+		// Update Light
+		vfxLight.color = lightColorGrade.Evaluate(bass);
+
+		// Update Glow
+		glowSystem.Emit((int)(burstCount * midrange));
+
+		// Update Sigil
+		sigilSprite.color = lightColorGrade.Evaluate(bass);
+		sigilSystem.Emit((int)(burstCount * treble));
 	}
 
 	// Internal Methods
